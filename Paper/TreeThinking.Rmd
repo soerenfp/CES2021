@@ -1,0 +1,327 @@
+---
+title: "TreeThinking"
+author: "Soren Pedersen"
+date: "2023-01-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+###Introduction###
+
+This document is based on the PP presentation by Ben Marwick CES2021 at the Cultural Evolution Society Conference, 
+Sapporo, June 2021 -> the PP is in the litterature folder
+
+Downloaded from: https://github.com/benmarwick/CES2021
+
+#Install packages
+
+```{r, install packages, echo=TRUE, eval=FALSE}
+install.packages("here")
+install.packages("cluster")
+install.packages("ggplot2")
+install.packages("readr")
+install.packages("Momocs")
+install.packages("dplyr")
+install.packages("maptree")
+install.packages("ggimage")
+install.packages("phangorn")
+install.packages("rworldmap")
+install.packages("raster") 
+install.packages("NbClust")
+
+#You need to install ggtree, but this is build under older versions. Therefore download it via Biocmaneger
+
+if (!requireNamespace("ggtree", quietly = TRUE)){
+  if (!requireNamespace("BiocManager", quietly = TRUE)){
+    install.packages("BiocManager")
+    BiocManager::install("ggtree")
+    library(ggtree)
+  } else {
+    BiocManager::install("ggtree")
+    library(ggtree)
+  }
+} else {library(ggtree)}
+
+#Faster is to:
+install.packages("BiocManager")
+BiocManager::install("ggtree")
+```
+
+#Load packages
+
+```{r, load packages, echo=TRUE}
+library(here)
+library(cluster)
+library(ggplot2)
+library(readr)
+library(Momocs)
+library(dplyr)
+library(maptree)
+library(ggimage)
+library(phangorn)
+library(rworldmap)
+library(raster) 
+library(NbClust)
+
+#If ggtree was not loaded above
+library(ggtree)
+```
+
+
+### (1) Load and prepare data ###
+
+#Load data
+
+```{r, load data, echo=TRUE}
+#OBS: make your own file path
+#OBS: look at his dataset before loading
+
+outlines_combined_nicolas_2016 <- readRDS(file = file.path(here("data/outlines_combined_nicholas_2016.RDS")))
+```
+
+#Prepare data: center
+
+```{r, PrepData_center, echo=TRUE}
+outlines_combined_nicolas_2016_centered <- 
+  Momocs::coo_centre(outlines_combined_nicolas_2016)
+```
+
+#Prepare data: scale
+
+```{r, PrepData_scale, echo=TRUE}
+outlines_combined_nicolas_2016_centered_scaled <- 
+  Momocs::coo_scale(outlines_combined_nicolas_2016_centered)
+```
+
+#Prepare data: direction
+
+```{r, PrepData_direction, echo=TRUE}
+outlines_combined_nicolas_2016_centered_scaled <- 
+  Momocs::coo_slidedirection(outlines_combined_nicolas_2016_centered_scaled, 
+                             direction = "up")
+
+#One code chunk was left out of the original document:
+
+# Momocs::panel(outlines_combined_nicolas_2016_centered_scaled)
+```
+
+
+### (2) Unification of outlines with catalogue-dataframe ###
+
+#Read in .csv files, i.e. coordinate files from DiaOutline
+
+```{r, echo=TRUE}
+#OBS: Make your own filepath
+#OBS: look at his dataset before loading
+
+nicolas_fleches_2016_catalog_ids_coordinates <- 
+  readr::read_csv(file = here("data/nicolas_fleches_2016_catalog_ids_with_coordinates.csv"))
+```
+
+#Set names
+
+```{r, echo=TRUE}
+outlines_combined_nicolas_2016_names <- 
+  names(outlines_combined_nicolas_2016_centered_scaled)
+```
+
+#Split names
+
+```{r, echo=TRUE}
+outlines_combined_nicolas_2016_names_splitted <- 
+  strsplit(outlines_combined_nicolas_2016_names, split = "_")
+```
+
+#Make a list() of ID and artifact ID
+
+```{r, echo=TRUE}
+ID_and_artefact_ID_list <- list()
+for (name_index in 1:length(outlines_combined_nicolas_2016_names)){
+  
+  ID_and_artefact_ID_interrim_df <- data.frame(ID = paste0(outlines_combined_nicolas_2016_names_splitted[[name_index]][1], "-", outlines_combined_nicolas_2016_names_splitted[[name_index]][2]),
+                                               ID_artefact <- outlines_combined_nicolas_2016_names[[name_index]])
+  names(ID_and_artefact_ID_interrim_df) <- c("ID", "ID_artefact")
+  ID_and_artefact_ID_list[[name_index]] <- ID_and_artefact_ID_interrim_df
+  
+}
+
+ID_and_artefact_ID_df <- 
+  do.call("rbind", ID_and_artefact_ID_list)
+
+nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <- 
+  dplyr::inner_join(ID_and_artefact_ID_df, 
+                    nicolas_fleches_2016_catalog_ids_coordinates, 
+                    by = "ID")
+```
+
+#Make an Out object
+
+```{r, echo=TRUE}
+#OBS: here is the first 'fac'
+
+outlines_combined_nicolas_2016_centered_scaled <- 
+  Momocs::Out(outlines_combined_nicolas_2016_centered_scaled$coo,
+              fac = nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID)
+```
+
+#Remove fragmented outliers
+
+```{r, echo=TRUE}
+#OBS: Perhaps you do not need this step!
+
+outlines_combined_nicolas_2016_centered_scaled <- 
+  Momocs::filter(outlines_combined_nicolas_2016_centered_scaled, 
+                 !ID_artefact %in% c("UK_60_XX_pseudo_no_10", "UK_15_XX_pseudo_no_4"))
+```
+
+#List the number of artifacts
+
+```{r, echo=TRUE}
+length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "Denmark")) # number of artefacts from denmark
+length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "France")) # number of artefacts from france
+length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "United Kingdom")) # number of artefacts from the uk
+```
+
+#Calibrate harmonics
+
+```{r, echo=TRUE}
+# Estimates the number of harmonics required for the Fourier methods implemented in Momocs
+
+outlines_combined_nicolas_2016_centered_scaled_harmonics <- 
+  Momocs::calibrate_harmonicpower_efourier(outlines_combined_nicolas_2016_centered_scaled, 
+                                           plot = F)
+
+# outlines_combined_nicolas_2016_centered_scaled_harmonics
+```
+
+#efourier
+
+```{r, echo=TRUE}
+outlines_combined_nicolas_2016_centered_scaled_efourier <- 
+  Momocs::efourier(outlines_combined_nicolas_2016_centered_scaled,
+                   nb.h = as.matrix(outlines_combined_nicolas_2016_centered_scaled_harmonics[["minh"]])[[4,1]], # harmonics for 99.9%
+                   norm = F) # you selected `norm=TRUE`, which is not recommended. See ?efourier --> probably no problem in our case
+```
+
+#PCA
+
+```{r, echo=TRUE}
+outlines_combined_nicolas_2016_centered_scaled_PCA <- 
+  Momocs::PCA(outlines_combined_nicolas_2016_centered_scaled_efourier) # PCA on Coe objects, using prcomp.
+```
+
+#Minimum number of PCs
+
+```{r, echo=TRUE}
+minimum_no_of_pcs_nicolas <- 
+  Momocs::scree_min(outlines_combined_nicolas_2016_centered_scaled_PCA,
+                    prop = 0.95) # minimum number of axis to use to retain a given proportion (i.e. prop = 0.99 to describe 99% of the variation) -- reduces computing time in the phylogeny estimation step:
+```
+
+#Make a scree_plot of the PCA
+
+```{r, echo=TRUE}
+Momocs::scree_plot(outlines_combined_nicolas_2016_centered_scaled_PCA)
+```
+
+
+### (3) Create groups ###
+
+#pch.group
+
+```{r, echo=TRUE}
+pch.group <- c(rep(21, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "Denmark"))), 
+               rep(22, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "France"))),
+               rep(23, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "United Kingdom"))))
+```
+
+#col.group
+
+```{r, echo=TRUE}
+col.group <- c(rep("skyblue2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "Denmark"))), 
+               rep("gold", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "France"))),
+               rep("green2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "United Kingdom"))))
+```
+
+#Plot
+
+```{r, echo=TRUE}
+plot(outlines_combined_nicolas_2016_centered_scaled_PCA$x[,1],
+     outlines_combined_nicolas_2016_centered_scaled_PCA$x[,2],
+     xlab=paste("PCA 1 (", round(summary(outlines_combined_nicolas_2016_centered_scaled_PCA)$importance[2]*100, 1), "%)", sep = ""),
+     ylab=paste("PCA 2 (", round(summary(outlines_combined_nicolas_2016_centered_scaled_PCA)$importance[5]*100, 1), "%)", sep = ""),
+     pch=pch.group,
+     col="black",
+     bg=col.group,
+     cex=1,
+     las=1,
+     asp=1,
+     main = "Nicolas 2016; PCA of Bell Beaker arrowhead outline shapes")
+
+# Add grid lines
+abline(v=0, lty=2, col="grey50")
+abline(h=0, lty=2, col="grey50")
+
+# Add legend
+legend("bottomleft", 
+       legend=c("Denmark", "France", "United Kingdom"), 
+       col="black", 
+       pt.bg=c("skyblue2", "gold", "green2"), 
+       pch=c(21, 22, 24), 
+       pt.cex=1.5)
+```
+
+#Remove outliers
+
+```{r, echo=TRUE}
+nicolas_outliers_db <- 
+  fpc::dbscan(outlines_combined_nicolas_2016_centered_scaled_PCA$x, 
+              eps = 0.3, 
+              MinPts = 3)
+```
+
+#Plot
+
+```{r, echo=TRUE}
+plot(nicolas_outliers_db, 
+     outlines_combined_nicolas_2016_centered_scaled_PCA$x, 
+     main = "DBSCAN", 
+     frame = FALSE)
+```
+
+#Make a data frame
+
+```{r, echo=TRUE}
+nicolas_outliers_cluster <- 
+  data.frame(name = row.names(outlines_combined_nicolas_2016_centered_scaled_PCA$x), 
+             value = nicolas_outliers_db$cluster, 
+             row.names = NULL)
+```
+
+#Subset outliers
+
+```{r, echo=TRUE}
+nicolas_outliers_cluster_outlier_names <- 
+  subset(nicolas_outliers_cluster, value != 1)
+```
+
+#(Dont know)
+
+```{r, echo=TRUE}
+outlines_combined_nicolas_2016_centered_scaled_PCA$fac$outlier_names <- NA
+outlines_combined_nicolas_2016_centered_scaled$fac$cluster <- as.factor(nicolas_outliers_cluster$value)
+
+for (vector_index in 1:length(match(nicolas_outliers_cluster_outlier_names$name, 
+                                    outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID_artefact))){
+  
+  current_index <- match(nicolas_outliers_cluster_outlier_names$name, 
+                         outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID_artefact)[vector_index]
+  
+  outlines_combined_nicolas_2016_centered_scaled_PCA$fac$outlier_names[current_index] <- nicolas_outliers_cluster_outlier_names$name[vector_index]
+}
+```
+
+#Look at the shape of the outliers
