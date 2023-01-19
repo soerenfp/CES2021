@@ -14,6 +14,10 @@ library(rworldmap)
 library(raster) 
 library(NbClust)
 
+#To install ggtree you need Biocmaneger
+install.packages("BiocManager")
+BiocManager::install("ggtree")
+
 if (!requireNamespace("ggtree", quietly = TRUE)){
   if (!requireNamespace("BiocManager", quietly = TRUE)){
     install.packages("BiocManager")
