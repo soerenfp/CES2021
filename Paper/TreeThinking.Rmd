@@ -274,6 +274,9 @@ legend("bottomleft",
        pt.cex=1.5)
 ```
 
+
+### (4) Analysis of the outliers ###
+
 #Remove outliers
 
 ```{r, echo=TRUE}
@@ -283,7 +286,7 @@ nicolas_outliers_db <-
               MinPts = 3)
 ```
 
-#Plot
+#Plot outliers 
 
 ```{r, echo=TRUE}
 plot(nicolas_outliers_db, 
@@ -325,3 +328,297 @@ for (vector_index in 1:length(match(nicolas_outliers_cluster_outlier_names$name,
 ```
 
 #Look at the shape of the outliers
+
+```{r, echo=TRUE}
+nicolas_2016_with_outliers <- 
+  Momocs::slice(outlines_combined_nicolas_2016_centered_scaled, 
+                match(nicolas_outliers_cluster_outlier_names$name, 
+                      outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID_artefact))
+```
+
+#Plot outliers
+
+```{r, echo=TRUE}
+Momocs::panel(nicolas_2016_with_outliers,
+              fac = "country_code",
+              names = T,
+              col = "grey")
+```
+
+
+### (5) Analysis without outliers ###
+
+#Make a new dataset
+
+```{r, echo=TRUE}
+nicolas_2016_without_outliers <- 
+  Momocs::slice(outlines_combined_nicolas_2016_centered_scaled, 
+                -match(nicolas_outliers_cluster_outlier_names$name, 
+                       outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID_artefact))
+```
+
+#Calibrate harmonics
+
+```{r, echo=TRUE}
+nicolas_2016_without_outliers_harmonics <- 
+  Momocs::calibrate_harmonicpower_efourier(nicolas_2016_without_outliers, 
+                                           plot = F)  # Estimates the number of harmonics required for the Fourier methods implemented in Momocs. This is the only step in this section that produces data we need in the subsequent step.
+```
+
+#Efourier
+
+```{r, echo=TRUE}
+nicolas_2016_without_outliers_efourier <- 
+  Momocs::efourier(nicolas_2016_without_outliers,
+                   nb.h = as.matrix(nicolas_2016_without_outliers_harmonics[["minh"]])[[4,1]], # harmonics for 99.9%
+                   norm = F)
+```
+
+#PCA
+
+```{r, echo=TRUE}
+nicolas_2016_without_outliers_PCA <- 
+  Momocs::PCA(nicolas_2016_without_outliers_efourier) # PCA on Coe objects, using prcomp.
+```
+
+#Plot PCA
+
+```{r, echo=TRUE}
+nicolas_2016_screeplot_wo_outliers <- 
+  Momocs::scree_plot(nicolas_2016_without_outliers_PCA, 
+                     nax = 1:50)
+```
+
+#See how many PCs will give 99.9% - 39 PCs gets there
+
+```{r, echo=TRUE}
+summary(nicolas_2016_without_outliers_PCA)
+```
+
+#Insert (39) 99.9% outliers
+
+```{r, echo=TRUE}
+minimum_no_of_pcs_nicolas_without_outliers <- 39
+  # ncol(nicolas_2016_without_outliers_PCA$x) #use all PC axes (Left out in original)
+```
+
+#(Dont know)
+
+```{r, echo=TRUE}
+gg_nicolas <- Momocs::PCcontrib(nicolas_2016_without_outliers_PCA,
+                                nax = 1:5,
+                                sd.r = c(-2,-1,0,1,2))
+```
+
+#Plot
+
+```{r, echo=TRUE}
+gg_nicolas$gg + 
+  geom_polygon(fill="slategrey", col="black") + 
+  theme_minimal(base_size = 20) +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+#Save data .png
+
+```{r, echo=TRUE}
+ggsave(here("figures/nicolas_arrowheads_pca_contrib.png"),
+       h = 10, w = 8)
+```
+
+#Plot
+
+```{r, echo=TRUE}
+#library(ggplot2)
+gg_nicolas <- gg_nicolas$gg +
+  theme_bw() +
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+#Nice PCA plot
+
+#Create pch.group
+
+```{r, echo=TRUE}
+pch.group <- c(rep(21, times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "Denmark"))), 
+               rep(22, times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "France"))),
+               rep(23, times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "United Kingdom"))))
+```
+
+#Create col.group
+
+```{r, echo=TRUE}
+col.group <- c(rep("skyblue2", times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "Denmark"))), 
+               rep("gold", times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "France"))),
+               rep("green2", times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "United Kingdom"))))
+```
+
+#Plot
+
+```{r, echo=TRUE}
+plot(nicolas_2016_without_outliers_PCA$x[,1],
+     nicolas_2016_without_outliers_PCA$x[,2],
+     xlab=paste("PCA 1 (", round(summary(nicolas_2016_without_outliers_PCA)$importance[2]*100, 1), "%)", sep = ""),
+     ylab=paste("PCA 2 (", round(summary(nicolas_2016_without_outliers_PCA)$importance[5]*100, 1), "%)", sep = ""),
+     pch=pch.group,
+     col="black",
+     bg=col.group,
+     cex=1,
+     las=1,
+     asp=1,
+     main = "Nicolas 2016; PCA of Bell Beaker arrowhead outline shapes without outliers")
+# Add grid lines
+abline(v=0, lty=2, col="grey50")
+abline(h=0, lty=2, col="grey50")
+# Add legend
+legend("bottomleft", 
+       legend=c("Denmark", "France", "United Kingdom"), 
+       col="black", 
+       pt.bg=c("skyblue2", "gold", "green2"), 
+       pch=c(21, 22, 24), 
+       pt.cex=1.5)
+```
+
+
+### (6) NJ typochronology ###
+
+#Read .csv data
+
+```{r, echo=TRUE}
+typochronologie_csv <- readr::read_csv(here("data/nicolas_2017_typochronologie.csv"))
+
+typochronologie_csv <- dplyr::distinct(typochronologie_csv, ID_country, .keep_all = T)
+```
+
+#Subset country (UK)
+
+```{r, echo=TRUE}
+typochronologie_csv_UK <- subset(typochronologie_csv, Country == "UK")
+```
+
+#Subset country (FR)
+
+```{r, echo=TRUE}
+typochronologie_csv_FR <- subset(typochronologie_csv, Country == "FR")
+```
+
+#Make a dataframe
+
+```{r, echo=TRUE}
+nicolas_2016_without_outliers_PCA_as_df <- 
+  as.data.frame(nicolas_2016_without_outliers_PCA$x[,1:minimum_no_of_pcs_nicolas_without_outliers])
+```
+
+#Sapply and split dataframe
+
+```{r, echo=TRUE}
+nicolas_2016_without_outliers_PCA_as_df$ID_country <- sapply(rownames(nicolas_2016_without_outliers_PCA_as_df),
+                                                             function(x){
+                                                               strsplit(x, split = "(?<=.{5})", perl = TRUE)[[1]][1] # RegEx "(?<=.{5})" means: split into chunks of 5 characters long
+                                                             })
+```
+
+
+### FR ###
+
+#Subset
+
+```{r, echo=TRUE}
+nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR <- subset(nicolas_2016_without_outliers_PCA_as_df, ID_country %in% typochronologie_csv_FR$ID_country)
+```
+
+#Make a dataframe
+
+```{r, echo=TRUE}
+names_artefacts_ID <- data.frame(artefact_ID = rownames(nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR),
+                                 ID_country = nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR$ID_country)
+```
+
+#dplyr
+
+```{r, echo=TRUE}
+names_artefacts_ID_and_period <- dplyr::left_join(names_artefacts_ID, typochronologie_csv_FR[,c("ID_country", "Period")], by = "ID_country")
+```
+
+#as.factor
+
+```{r, echo=TRUE}
+names_artefacts_ID_and_period$Period <- as.factor(names_artefacts_ID_and_period$Period)
+```
+
+#Plot
+
+```{r, echo=TRUE}
+plot(nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR$PC1,
+     nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR$PC2,
+     xlab="PC1", 
+     ylab="PC2",
+     cex=1,
+     las=1,
+     asp=1,
+     main = "Nicolas 2016; PCA of French Bell Beaker arrowhead outline shapes without outliers")
+
+# Add grid lines
+abline(v=0, lty=2, col="grey50")
+abline(h=0, lty=2, col="grey50")
+```
+
+#NULL
+
+```{r, echo=TRUE}
+nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR$ID_country <- NULL
+```
+
+#dist (euclidean)
+
+```{r, echo=TRUE}
+nicolas_typochron_FR_dist <- dist(nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR, method = "euclidean")
+```
+
+#phangorn
+
+```{r, echo=TRUE}
+nicolas_typochron_FR_NJ <- phangorn::NJ(nicolas_typochron_FR_dist)
+```
+
+#Make additional information data frame "period"
+
+```{r, echo=TRUE}
+additional_information_period <- data.frame(Period = names_artefacts_ID_and_period[,c("Period")])
+```
+
+#Change rownames
+
+```{r, echo=TRUE}
+rownames(additional_information_period) <- names_artefacts_ID_and_period$artefact_ID
+```
+
+#Original comment: need to run to at least here before moving to the next script file
+
+
+### Tree plot ###
+
+#Plot
+
+```{r, echo=TRUE}
+NJ_nicolas_ggtree <- ggtree(nicolas_typochron_FR_NJ) %<+% names_artefacts_ID_and_period +
+  geom_tiplab(size=3, 
+              aes(label = ID_country,
+                  color = ID_country)) +
+  geom_treescale() + 
+  scale_colour_discrete(na.translate = F) + 
+  guides(color=guide_legend(title="Site ID"))
+```
+
+#View tree
+
+```{r, echo=TRUE}
+NJ_nicolas_ggtree
+```
+
