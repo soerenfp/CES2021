@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ###Introduction###
 
 This document is based on the PP presentation by Ben Marwick CES2021 at the Cultural Evolution Society Conference, 
-Sapporo, June 2021 -> the PP is in the litterature folder
+Sapporo, June 2021 -> the PP is in the literature folder
 
 Downloaded from: https://github.com/benmarwick/CES2021
 
@@ -69,9 +69,68 @@ library(NbClust)
 #If ggtree was not loaded above
 library(ggtree)
 ```
+###THIS PART IS FROM THE OLD EFA_WISHKERMAN DATA###
 
+### (0) Load coordinate data from DiaOutline ###
+
+#Load data into variable lf
+
+```{r, echo=TRUE}
+lf <- list.files(path = here::here("data/DiaOutlineTraces_NewNames"), 
+                 pattern = "\\.txt$", # this tells the function to only look for .txt type files
+                 full.names=TRUE)  # We have to keep the full names on to read in the outlines later.
+```
+
+#Create a new variable and split the data using lf_structure()
+
+```{r, echo=TRUE}
+lf1 <- Momocs::lf_structure(lf,  
+                    split = "/", # Nick: this specifies the separator for splitting. In your case it is a /
+                    trim.extension = FALSE)
+```
+
+#Create a variable and substr()
+
+```{r, echo=TRUE}
+#(3) The function data.frame() creates data frames, tightly coupled collections of variables which share many of the properties of matrices and of lists
+
+#"In order to specify explanatory variables going along with the coordinate or coefficient set, grouping factors or covariates can be specified through a data.frame(), and then used to create subsets (see ?Coo)." (Bonhomme et al. 2014)
+
+lf2<-data.frame(substr(lf1$V7, 1, 4))
+
+#ORIGINAL CODE: lf2<-data.frame(substr(lf1$V2, 1, 5))
+
+#...and name the data frame column
+
+names(lf2)[1] <- "Type"
+
+#ORIGINAL CODE: names(lf2)[1] <- "Type"
+```
+
+#Import the coordinates from the .txt DiaOutline files to a new variable "coordinates"
+
+```{r, echo=TRUE}
+coordinates <- import_txt(lf)
+
+#ORIGINAL CODE: coordinates <- import_txt(lf)
+```
+
+#Build an Out object
+
+```{r, echo=TRUE}
+allDiatomOutlines <- Out(coordinates, fac = lf2)
+
+#ORIGINAL CODE: allDiatomOutlines<-Out(coordinates, fac = lf2)
+```
+
+#Save the data in RDS format
+
+```{r, echo=TRUE}
+saveRDS(allDiatomOutlines, file = "DOcoordinates.RDS")
+```
 
 ### (1) Load and prepare data ###
+#OBS: Here starts the Warnock code
 
 #Load data
 
@@ -79,7 +138,7 @@ library(ggtree)
 #OBS: make your own file path
 #OBS: look at his dataset before loading
 
-outlines_combined_nicolas_2016 <- readRDS(file = file.path(here("data/outlines_combined_nicholas_2016.RDS")))
+outlines_combined_nicolas_2016 <- readRDS("DOcoordinates.RDS")
 ```
 
 #Prepare data: center
@@ -111,10 +170,10 @@ outlines_combined_nicolas_2016_centered_scaled <-
 
 ### (2) Unification of outlines with catalogue-dataframe ###
 
-#Read in .csv files, i.e. coordinate files from DiaOutline
+#Read in .csv files
 
 ```{r, echo=TRUE}
-#OBS: Make your own filepath
+#OBS: Make your own filepath and dataset
 #OBS: look at his dataset before loading
 
 nicolas_fleches_2016_catalog_ids_coordinates <- 
