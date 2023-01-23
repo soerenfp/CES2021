@@ -141,25 +141,22 @@ saveRDS(allDiatomOutlines, file = "DOcoordinates.RDS")
 outlines_combined_nicolas_2016 <- readRDS("DOcoordinates.RDS")
 ```
 
-#Prepare data: center
+#Prepare data: coo_center
 
 ```{r, PrepData_center, echo=TRUE}
-outlines_combined_nicolas_2016_centered <- 
-  Momocs::coo_centre(outlines_combined_nicolas_2016)
+outlines_combined_nicolas_2016_centered <- Momocs::coo_centre(outlines_combined_nicolas_2016)
 ```
 
-#Prepare data: scale
+#Prepare data: coo_scale
 
 ```{r, PrepData_scale, echo=TRUE}
-outlines_combined_nicolas_2016_centered_scaled <- 
-  Momocs::coo_scale(outlines_combined_nicolas_2016_centered)
+outlines_combined_nicolas_2016_centered_scaled <- Momocs::coo_scale(outlines_combined_nicolas_2016_centered)
 ```
 
-#Prepare data: direction
+#Prepare data: coo_slidedirection
 
 ```{r, PrepData_direction, echo=TRUE}
-outlines_combined_nicolas_2016_centered_scaled <- 
-  Momocs::coo_slidedirection(outlines_combined_nicolas_2016_centered_scaled, 
+outlines_combined_nicolas_2016_centered_scaled <- Momocs::coo_slidedirection(outlines_combined_nicolas_2016_centered_scaled, 
                              direction = "up")
 
 #One code chunk was left out of the original document:
@@ -176,8 +173,9 @@ outlines_combined_nicolas_2016_centered_scaled <-
 #OBS: Make your own filepath and dataset
 #OBS: look at his dataset before loading
 
-nicolas_fleches_2016_catalog_ids_coordinates <- 
-  readr::read_csv(file = here("data/nicolas_fleches_2016_catalog_ids_with_coordinates.csv"))
+nicolas_fleches_2016_catalog_ids_coordinates <- read.table(file = here("data/SFP_catalog_ID_site_date_vessel_TAB.txt"), sep="\t", header=TRUE)
+
+#ORIGINAL CODE: nicolas_fleches_2016_catalog_ids_coordinates <- readr::read_csv(file = here("data/nicolas_fleches_2016_catalog_ids_with_coordinates.csv"))
 ```
 
 #Set names
@@ -210,10 +208,11 @@ for (name_index in 1:length(outlines_combined_nicolas_2016_names)){
 ID_and_artefact_ID_df <- 
   do.call("rbind", ID_and_artefact_ID_list)
 
-nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <- 
-  dplyr::inner_join(ID_and_artefact_ID_df, 
-                    nicolas_fleches_2016_catalog_ids_coordinates, 
-                    by = "ID")
+#Joins the data in the first column "ID" 
+
+#nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, nicolas_fleches_2016_catalog_ids_coordinates, by = "Region")
+
+#ORIGINAL CODE: nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, nicolas_fleches_2016_catalog_ids_coordinates, by = "ID")
 ```
 
 #Make an Out object
@@ -223,7 +222,10 @@ nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <-
 
 outlines_combined_nicolas_2016_centered_scaled <- 
   Momocs::Out(outlines_combined_nicolas_2016_centered_scaled$coo,
-              fac = nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID)
+              fac = ID_and_artefact_ID_df) #OBS: here I entered "ID_and_artifact_ID_df", perhaps not correct?
+
+#ORIGINAL CODE: 
+#outlines_combined_nicolas_2016_centered_scaled <- Momocs::Out(outlines_combined_nicolas_2016_centered_scaled$coo, fac = nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID)
 ```
 
 #Remove fragmented outliers
@@ -239,9 +241,22 @@ outlines_combined_nicolas_2016_centered_scaled <-
 #List the number of artifacts
 
 ```{r, echo=TRUE}
-length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "Denmark")) # number of artefacts from denmark
-length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "France")) # number of artefacts from france
-length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "United Kingdom")) # number of artefacts from the uk
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Dia Mara"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Dia Shoma"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Jenne-jeno"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "KNTII"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Korounkorokale"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Ounjougou"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Timbuktu"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Toubel"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Winde Koroji"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Dhar Tichitt"))
+length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Karkarichinkat"))
+
+#ORIGINAL CODE BELOW
+#length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "Denmark")) # number of artefacts from denmark
+#length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "France")) # number of artefacts from france
+#length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "United Kingdom")) # number of artefacts from the uk
 ```
 
 #Calibrate harmonics
@@ -292,17 +307,43 @@ Momocs::scree_plot(outlines_combined_nicolas_2016_centered_scaled_PCA)
 #pch.group
 
 ```{r, echo=TRUE}
-pch.group <- c(rep(21, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "Denmark"))), 
-               rep(22, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "France"))),
-               rep(23, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "United Kingdom"))))
+pch.group <- c(rep(21, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dia Mara"))), 
+               rep(22, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dia Shoma"))),
+               rep(23, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Jenne-jeno"))),  
+               rep(24, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "KNTII"))),  
+               rep(25, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Korounkorokale"))),  
+               rep(26, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Ounjougou"))),  
+               rep(27, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Timbuktu"))),  
+               rep(28, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Toubel"))),  
+               rep(29, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Winde Koroji"))),  
+               rep(30, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dhar Tichitt"))),  
+               rep(31, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Karkarichinkat"))))
+
+
+#ORIGINAL CODE:
+#pch.group <- c(rep(21, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "Denmark"))), rep(22, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "France"))), rep(23, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "United Kingdom"))))
+
 ```
 
 #col.group
 
 ```{r, echo=TRUE}
-col.group <- c(rep("skyblue2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "Denmark"))), 
-               rep("gold", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "France"))),
-               rep("green2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "United Kingdom"))))
+
+col.group <- c(rep("skyblue2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dia Mara"))), 
+               rep("gold", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dia Shoma"))),
+               rep("green2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Jenne-jeno"))), 
+               rep("darkblue", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "KNTII"))), 
+               rep("red1", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Korounkorokale"))), 
+               rep("orange1", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Ounjougou"))), 
+               rep("yellow1", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Timbuktu"))), 
+               rep("purple", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Toubel"))), 
+               rep("magenta", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Winde Koroji"))), 
+               rep("grey", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dhar Tichitt"))), 
+               rep("red3", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Karkarichinkat"))))
+
+#ORIGINAL CODE:
+
+#col.group <- c(rep("skyblue2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "Denmark"))), rep("gold", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "France"))), rep("green2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$country == "United Kingdom"))))
 ```
 
 #Plot
@@ -318,7 +359,7 @@ plot(outlines_combined_nicolas_2016_centered_scaled_PCA$x[,1],
      cex=1,
      las=1,
      asp=1,
-     main = "Nicolas 2016; PCA of Bell Beaker arrowhead outline shapes")
+     main = "SFP 2023; PCA of vessel outline shapes")
 
 # Add grid lines
 abline(v=0, lty=2, col="grey50")
@@ -326,10 +367,10 @@ abline(h=0, lty=2, col="grey50")
 
 # Add legend
 legend("bottomleft", 
-       legend=c("Denmark", "France", "United Kingdom"), 
+       legend=c("Dia Mara", "Dia Shoma", "Jenne-jeno", "KNTII", "Korounkorokale", "Ounjougou", "Timbuktu", "Toubel", "Winde Koroji", "Dhar Tichitt", "Karkarichinkat"), 
        col="black", 
-       pt.bg=c("skyblue2", "gold", "green2"), 
-       pch=c(21, 22, 24), 
+       pt.bg=c("skyblue2", "gold", "green2", "darkblue", "red1", "orange1", "yellow1", "purple", "magenta", "grey", "red3"), 
+       pch=c(21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31), 
        pt.cex=1.5)
 ```
 
