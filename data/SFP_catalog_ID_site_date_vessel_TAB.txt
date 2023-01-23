@@ -1,0 +1,241 @@
+Number	Site ID	Site	Region	Date	Phase	Vessel no	Class
+1	DM	Dia Mara	IND	500-1000AD	NA	v1	NA
+2	DM	Dia Mara	IND	500-1000AD	NA	v2	NA
+3	DM	Dia Mara	IND	1000-1600AD	NA	v1	NA
+4	DM	Dia Mara	IND	1000-1600AD	NA	v2	NA
+5	DM	Dia Mara	IND	1000-1600AD	NA	v3	NA
+6	DM	Dia Mara	IND	1000-1600AD	NA	v4	NA
+7	DM	Dia Mara	IND	1000-1600AD	NA	v5	NA
+8	DS	Dia Shoma	IND	800-200BC	NA	v1	NA
+9	DS	Dia Shoma	IND	800-200BC	NA	v2	NA
+10	DS	Dia Shoma	IND	800-200BC	NA	v3	NA
+11	DS	Dia Shoma	IND	800-200BC	NA	v4	NA
+12	DS	Dia Shoma	IND	800-200BC	NA	v5	NA
+13	DS	Dia Shoma	IND	800-200BC	NA	v6	NA
+14	DS	Dia Shoma	IND	800-200BC	NA	v7	NA
+15	DS	Dia Shoma	IND	800-200BC	NA	v8	NA
+16	DS	Dia Shoma	IND	800-200BC	NA	v9	NA
+17	DS	Dia Shoma	IND	800-200BC	NA	v10	NA
+18	DS	Dia Shoma	IND	1000-1600AD	NA	v1	NA
+19	DS	Dia Shoma	IND	1000-1600AD	NA	v2	NA
+20	DS	Dia Shoma	IND	1000-1600AD	NA	v3	NA
+21	DS	Dia Shoma	IND	1000-1600AD	NA	v4	NA
+22	JJ	Jenne-jeno	IND	250BC-350AD	NA	v1	NA
+23	JJ	Jenne-jeno	IND	250BC-350AD	NA	v2	NA
+24	JJ	Jenne-jeno	IND	250BC-350AD	NA	v3	NA
+25	JJ	Jenne-jeno	IND	250BC-350AD	NA	v4	NA
+26	JJ	Jenne-jeno	IND	250BC-350AD	NA	v5	NA
+27	JJ	Jenne-jeno	IND	250BC-350AD	NA	v6	NA
+28	JJ	Jenne-jeno	IND	250BC-350AD	NA	v7	NA
+29	JJ	Jenne-jeno	IND	250BC-350AD	NA	v8	NA
+30	JJ	Jenne-jeno	IND	250BC-350AD	NA	v9	NA
+31	JJ	Jenne-jeno	IND	250BC-350AD	NA	v10	NA
+32	JJ	Jenne-jeno	IND	250BC-350AD	NA	v11	NA
+33	JJ	Jenne-jeno	IND	250BC-350AD	NA	v12	NA
+34	JJ	Jenne-jeno	IND	350-850AD	NA	v1	NA
+35	JJ	Jenne-jeno	IND	350-850AD	NA	v2	NA
+36	JJ	Jenne-jeno	IND	350-850AD	NA	v3	NA
+37	JJ	Jenne-jeno	IND	350-850AD	NA	v4	NA
+38	JJ	Jenne-jeno	IND	350-850AD	NA	v5	NA
+39	JJ	Jenne-jeno	IND	350-850AD	NA	v6	NA
+40	JJ	Jenne-jeno	IND	350-850AD	NA	v7	NA
+41	JJ	Jenne-jeno	IND	350-850AD	NA	v8	NA
+42	JJ	Jenne-jeno	IND	350-850AD	NA	v9	NA
+43	JJ	Jenne-jeno	IND	350-850AD	NA	v10	NA
+44	JJ	Jenne-jeno	IND	350-850AD	NA	v11	NA
+45	JJ	Jenne-jeno	IND	350-850AD	NA	v12	NA
+46	JJ	Jenne-jeno	IND	350-850AD	NA	v13	NA
+47	JJ	Jenne-jeno	IND	350-850AD	NA	v14	NA
+48	JJ	Jenne-jeno	IND	350-850AD	NA	v15	NA
+49	JJ	Jenne-jeno	IND	350-850AD	NA	v16	NA
+50	JJ	Jenne-jeno	IND	350-850AD	NA	v17	NA
+51	JJ	Jenne-jeno	IND	350-850AD	NA	v18	NA
+52	JJ	Jenne-jeno	IND	850-1400AD	NA	v1	NA
+53	JJ	Jenne-jeno	IND	850-1400AD	NA	v2	NA
+54	JJ	Jenne-jeno	IND	850-1400AD	NA	v3	NA
+55	JJ	Jenne-jeno	IND	850-1400AD	NA	v4	NA
+56	JJ	Jenne-jeno	IND	850-1400AD	NA	v5	NA
+57	JJ	Jenne-jeno	IND	850-1400AD	NA	v6	NA
+58	JJ	Jenne-jeno	IND	850-1400AD	NA	v7	NA
+59	JJ	Jenne-jeno	IND	850-1400AD	NA	v8	NA
+60	JJ	Jenne-jeno	IND	850-1400AD	NA	v9	NA
+61	JJ	Jenne-jeno	IND	850-1400AD	NA	v10	NA
+62	JJ	Jenne-jeno	IND	850-1400AD	NA	v11	NA
+63	JJ	Jenne-jeno	IND	850-1400AD	NA	v12	NA
+64	JJ	Jenne-jeno	IND	850-1400AD	NA	v13	NA
+65	JJ	Jenne-jeno	IND	850-1400AD	NA	v14	NA
+66	JJ	Jenne-jeno	IND	850-1400AD	NA	v15	NA
+67	JJ	Jenne-jeno	IND	850-1400AD	NA	v16	NA
+68	JJ	Jenne-jeno	IND	850-1400AD	NA	v17	NA
+69	JJ	Jenne-jeno	IND	850-1400AD	NA	v18	NA
+70	JJ	Jenne-jeno	IND	850-1400AD	NA	v19	NA
+71	JJ	Jenne-jeno	IND	850-1400AD	NA	v20	NA
+72	JJ	Jenne-jeno	IND	850-1400AD	NA	v21	NA
+73	JJ	Jenne-jeno	IND	850-1400AD	NA	v22	NA
+74	JJ	Jenne-jeno	IND	850-1400AD	NA	v23	NA
+75	JJ	Jenne-jeno	IND	850-1400AD	NA	v24	NA
+76	JJ	Jenne-jeno	IND	850-1400AD	NA	v25	NA
+77	JJ	Jenne-jeno	IND	350-850AD	NA	v1	URN
+78	JJ	Jenne-jeno	IND	850-1400AD	NA	v2	URN
+79	JJ	Jenne-jeno	IND	350-850AD	NA	v3	URN
+80	JJ	Jenne-jeno	IND	350-850AD	NA	v4	URNLID
+81	JJ	Jenne-jeno	IND	350-850AD	NA	v5	URN
+82	JJ	Jenne-jeno	IND	350-850AD	NA	v6	URNLID
+83	JJ	Jenne-jeno	IND	350-850AD	NA	v7	URN
+84	JJ	Jenne-jeno	IND	850-1400AD	NA	v8	URN
+85	JJ	Jenne-jeno	IND	850-1400AD	NA	v9	URNLID
+86	JJ	Jenne-jeno	IND	850-1400AD	NA	v10	URN
+87	JJ	Jenne-jeno	IND	850-1400AD	NA	v11	URN
+88	KN	KNTII	Lakes Region	300-440AD	NA	v1	NA
+89	KN	KNTII	Lakes Region	300-440AD	NA	v2	NA
+90	KN	KNTII	Lakes Region	300-440AD	NA	v3	NA
+91	KN	KNTII	Lakes Region	300-440AD	NA	v4	NA
+92	KN	KNTII	Lakes Region	300-440AD	NA	v5	NA
+93	KN	KNTII	Lakes Region	300-440AD	NA	v6	NA
+94	KN	KNTII	Lakes Region	300-440AD	NA	v7	NA
+95	KN	KNTII	Lakes Region	300-440AD	NA	v8	NA
+96	KN	KNTII	Lakes Region	300-440AD	NA	v9	NA
+97	KN	KNTII	Lakes Region	300-440AD	NA	v10	NA
+98	KN	KNTII	Lakes Region	300-440AD	NA	v11	NA
+99	KN	KNTII	Lakes Region	300-440AD	NA	v12	NA
+100	KN	KNTII	Lakes Region	440-640AD	NA	v13	NA
+101	KN	KNTII	Lakes Region	540-605AD	NA	v14	NA
+102	KN	KNTII	Lakes Region	300-440AD	NA	v15	NA
+103	KN	KNTII	Lakes Region	440-640AD	NA	v16	NA
+104	KN	KNTII	Lakes Region	605-680AD	NA	v17	NA
+105	KN	KNTII	Lakes Region	300-440AD	NA	v18	NA
+106	KN	KNTII	Lakes Region	605-680AD	NA	v19	NA
+107	KN	KNTII	Lakes Region	300-440AD	NA	v20	NA
+108	KN	KNTII	Lakes Region	300-440AD	NA	v21	NA
+109	KN	KNTII	Lakes Region	300-440AD	NA	v22	NA
+110	KN	KNTII	Lakes Region	605-680AD	NA	v23	NA
+111	KN	KNTII	Lakes Region	605-680AD	NA	v24	NA
+112	KN	KNTII	Lakes Region	605-680AD	NA	v25	NA
+113	KN	KNTII	Lakes Region	540-605AD	NA	v26	NA
+114	KN	KNTII	Lakes Region	300-440AD	NA	v27	NA
+115	KN	KNTII	Lakes Region	300-440AD	NA	v28	NA
+116	KN	KNTII	Lakes Region	440-605AD	NA	v29	NA
+117	KN	KNTII	Lakes Region	440-605AD	NA	v30	NA
+118	KN	KNTII	Lakes Region	300-440AD	NA	v31	NA
+119	KN	KNTII	Lakes Region	605-680AD	NA	v32	NA
+120	KN	KNTII	Lakes Region	440-640AD	NA	v33	NA
+121	KN	KNTII	Lakes Region	605-680AD	NA	v34	NA
+122	KN	KNTII	Lakes Region	300-440AD	NA	v35	NA
+123	KN	KNTII	Lakes Region	300-440AD	NA	v36	NA
+124	KN	KNTII	Lakes Region	300-440AD	NA	v37	NA
+125	KN	KNTII	Lakes Region	300-440AD	NA	v38	NA
+126	KN	KNTII	Lakes Region	300-440AD	NA	v39	NA
+127	KN	KNTII	Lakes Region	300-440AD	NA	v40	NA
+128	KN	KNTII	Lakes Region	300-440AD	NA	v41	NA
+129	KN	KNTII	Lakes Region	300-440AD	NA	v42	NA
+130	KN	KNTII	Lakes Region	300-440AD	NA	v43	NA
+131	KN	KNTII	Lakes Region	300-440AD	NA	v44	NA
+132	KN	KNTII	Lakes Region	300-440AD	NA	v45	NA
+133	KN	KNTII	Lakes Region	605-680AD	NA	v46	NA
+134	KN	KNTII	Lakes Region	440-640AD	NA	v47	NA
+135	KO	Korounkorokale	Upper Niger	4230-3820BC	NA	v1	NA
+136	KO	Korounkorokale	Upper Niger	4230-3820BC	NA	v2	NA
+137	KO	Korounkorokale	Upper Niger	890-1160AD	NA	v1	NA
+138	KO	Korounkorokale	Upper Niger	890-1160AD	NA	v2	NA
+139	OU	Ounjougou	Niger Bend	pre-9400BC	NA	v1	NA
+140	OU	Ounjougou	Niger Bend	2700-2020BC	NA	v1	NA
+141	OU	Ounjougou	Niger Bend	2700-2020BC	NA	v2	NA
+142	OU	Ounjougou	Niger Bend	1800-800BC	NA	v1	NA
+143	OU	Ounjougou	Niger Bend	1800-800BC	NA	v2	NA
+144	OU	Ounjougou	Niger Bend	1800-800BC	NA	v3	NA
+145	OU	Ounjougou	Niger Bend	1800-800BC	NA	v4	NA
+146	OU	Ounjougou	Niger Bend	1800-800BC	NA	v5	NA
+147	TI	Timbuktu	Sahara	500-100BC	NA	v1	NA
+148	TI	Timbuktu	Sahara	500-100BC	NA	v2	NA
+149	TI	Timbuktu	Sahara	650-770AD	NA	v1	NA
+150	TI	Timbuktu	Sahara	650-770AD	NA	v2	NA
+151	TI	Timbuktu	Sahara	650-770AD	NA	v3	NA
+152	TI	Timbuktu	Sahara	650-770AD	NA	v4	NA
+153	TI	Timbuktu	Sahara	650-770AD	NA	v5	NA
+154	TI	Timbuktu	Sahara	650-770AD	NA	v6	NA
+155	TI	Timbuktu	Sahara	650-770AD	NA	v7	NA
+156	TI	Timbuktu	Sahara	770-1000AD	NA	v1	NA
+157	TI	Timbuktu	Sahara	770-1000AD	NA	v2	NA
+158	TI	Timbuktu	Sahara	770-1000AD	NA	v3	NA
+159	TI	Timbuktu	Sahara	770-1000AD	NA	v4	NA
+160	TI	Timbuktu	Sahara	770-1000AD	NA	v5	NA
+161	TI	Timbuktu	Sahara	770-1000AD	NA	v6	NA
+162	TI	Timbuktu	Sahara	770-1000AD	NA	v7	NA
+163	TI	Timbuktu	Sahara	770-1000AD	NA	v8	NA
+164	TI	Timbuktu	Sahara	770-1000AD	NA	v9	NA
+165	TI	Timbuktu	Sahara	770-1000AD	NA	v10	NA
+166	TI	Timbuktu	Sahara	770-1000AD	NA	v11	NA
+167	TI	Timbuktu	Sahara	770-1000AD	NA	v12	NA
+168	TI	Timbuktu	Sahara	770-1000AD	NA	v13	NA
+169	TI	Timbuktu	Sahara	770-1000AD	NA	v14	NA
+170	TI	Timbuktu	Sahara	770-1000AD	NA	v15	NA
+171	TI	Timbuktu	Sahara	770-1000AD	NA	v16	NA
+172	TI	Timbuktu	Sahara	770-1000AD	NA	v17	NA
+173	TI	Timbuktu	Sahara	770-1000AD	NA	v18	NA
+174	TI	Timbuktu	Sahara	770-1000AD	NA	v19	NA
+175	TI	Timbuktu	Sahara	770-1000AD	NA	v20	NA
+176	TB	Toubel	Lakes Region	1295-1430AD	NA	v1	NA
+177	TB	Toubel	Lakes Region	1295-1430AD	NA	v2	NA
+178	TB	Toubel	Lakes Region	1295-1430AD	NA	v3	NA
+179	TB	Toubel	Lakes Region	1295-1430AD	NA	v4	NA
+180	TB	Toubel	Lakes Region	1295-1430AD	NA	v5	NA
+181	TB	Toubel	Lakes Region	1295-1430AD	NA	v6	NA
+182	TB	Toubel	Lakes Region	1295-1430AD	NA	v7	NA
+183	TB	Toubel	Lakes Region	1295-1430AD	NA	v8	NA
+184	TB	Toubel	Lakes Region	1295-1430AD	NA	v9	NA
+185	TB	Toubel	Lakes Region	1295-1430AD	NA	v10	NA
+186	TB	Toubel	Lakes Region	1295-1430AD	NA	v11	NA
+187	TB	Toubel	Lakes Region	1295-1430AD	NA	v12	NA
+188	TB	Toubel	Lakes Region	1295-1430AD	NA	v13	NA
+189	WK	Winde Koroji	Niger Bend	NA	Horizon A	v1	NA
+190	WK	Winde Koroji	Niger Bend	NA	Horizon A	v2	NA
+191	WK	Winde Koroji	Niger Bend	NA	Horizon A	v3	NA
+192	WK	Winde Koroji	Niger Bend	NA	Horizon A	v4	NA
+193	WK	Winde Koroji	Niger Bend	NA	Horizon A	v5	NA
+194	WK	Winde Koroji	Niger Bend	NA	Horizon A	v6	NA
+195	WK	Winde Koroji	Niger Bend	NA	Horizon B	v1	NA
+196	WK	Winde Koroji	Niger Bend	NA	Horizon B	v2	NA
+197	WK	Winde Koroji	Niger Bend	NA	Horizon B	v3	NA
+198	WK	Winde Koroji	Niger Bend	NA	Horizon B	v4	NA
+199	WK	Winde Koroji	Niger Bend	NA	Horizon B	v5	NA
+200	WK	Winde Koroji	Niger Bend	NA	Zampia	v1	NA
+201	WK	Winde Koroji	Niger Bend	NA	Zampia	v2	NA
+202	WK	Winde Koroji	Niger Bend	NA	Zampia	v3	NA
+203	WK	Winde Koroji	Niger Bend	NA	Zampia	v4	NA
+204	WK	Winde Koroji	Niger Bend	NA	Zampia	v5	NA
+205	WK	Winde Koroji	Niger Bend	NA	Zampia	v6	NA
+206	DT	Dhar Tichitt	Sahara	NA	NA	v1a	NA
+207	DT	Dhar Tichitt	Sahara	NA	NA	v2b	NA
+208	DT	Dhar Tichitt	Sahara	NA	NA	v3c	NA
+209	DT	Dhar Tichitt	Sahara	NA	NA	v4d	NA
+210	DT	Dhar Tichitt	Sahara	NA	NA	v5e	NA
+211	DT	Dhar Tichitt	Sahara	NA	NA	v6f	NA
+212	DT	Dhar Tichitt	Sahara	NA	NA	v7g	NA
+213	DT	Dhar Tichitt	Sahara	NA	NA	v8h	NA
+214	DT	Dhar Tichitt	Sahara	NA	NA	v9i	NA
+215	DT	Dhar Tichitt	Sahara	NA	NA	v10a	NA
+216	DT	Dhar Tichitt	Sahara	NA	NA	v11b	NA
+217	DT	Dhar Tichitt	Sahara	NA	NA	v12c	NA
+218	DT	Dhar Tichitt	Sahara	NA	NA	v13d	NA
+219	DT	Dhar Tichitt	Sahara	NA	NA	v14e	NA
+220	DT	Dhar Tichitt	Sahara	NA	NA	v15f	NA
+221	DT	Dhar Tichitt	Sahara	NA	NA	v16g	NA
+222	DT	Dhar Tichitt	Sahara	NA	NA	v17h	NA
+223	DT	Dhar Tichitt	Sahara	NA	NA	v18i	NA
+224	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v1	NA
+225	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v2	NA
+226	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v3	NA
+227	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v4	NA
+228	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v5	NA
+229	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v6	NA
+230	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v7	NA
+231	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v8	NA
+232	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v9	NA
+233	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v10	NA
+234	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v11	NA
+235	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v12	NA
+236	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v13	NA
+237	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v14	NA
+238	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v15	NA
+239	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v16	NA
+240	KK	Karkarichinkat	Sahara	2010-1670BC	NA	v17	NA
