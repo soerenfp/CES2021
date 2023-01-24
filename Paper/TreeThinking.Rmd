@@ -130,71 +130,135 @@ saveRDS(allDiatomOutlines, file = "DOcoordinates.RDS")
 ```
 
 ### (1) Load and prepare data ###
-#OBS: Here starts the Warnock code
 
-#Load data
+#OBS: Here starts the Marwick code from the PP presentation
 
-```{r, load data, echo=TRUE}
+# (1.1) Load outline data
+
+```{r load outline data, echo=TRUE}
 #OBS: make your own file path
 #OBS: look at his dataset before loading
 
-outlines_combined_nicolas_2016 <- readRDS("DOcoordinates.RDS")
+#outlines_combined_SFP_2023 <- readRDS("DOcoordinates.RDS")
+
+#Original code:
+outlines_combined_nicolas_2016 <- readRDS(file = file.path(here("data/outlines_combined_nicholas_2016.RDS")))
 ```
 
-#Prepare data: coo_center
+# (1.2) Prepare data: coo_center
 
-```{r, PrepData_center, echo=TRUE}
+R help: Returns a shape centered on the origin.
+
+```{r PrepData coo_center, echo=TRUE}
+#outlines_combined_SFP_2023_centered <- Momocs::coo_centre(outlines_combined_SFP_2023)
+
+#Original code:
 outlines_combined_nicolas_2016_centered <- Momocs::coo_centre(outlines_combined_nicolas_2016)
 ```
 
-#Prepare data: coo_scale
+# (1.3) Prepare data: coo_scale
 
-```{r, PrepData_scale, echo=TRUE}
+R help: coo_scale scales the coordinates by a 'scale' factor. If not provided, assumed to be the centroid size. It involves three steps: 
+
+1) centering from current position, 
+2) dividing coordinates by 'scale', 
+3) pushing back to the original position. 
+
+coo_scalex applies a scaling (or shrinking) parallel to the x-axis, coo_scaley does the same for the y axis.
+
+Q: Should I here provide a 'scale factor'?
+
+```{r PrepData coo_scale, echo=TRUE}
+#outlines_combined_SFP_2023_centered_scaled <- Momocs::coo_scale(outlines_combined_SFP_2023_centered)
+
+#Original code:
 outlines_combined_nicolas_2016_centered_scaled <- Momocs::coo_scale(outlines_combined_nicolas_2016_centered)
 ```
 
-#Prepare data: coo_slidedirection
+# (1.4) Prepare data: coo_slidedirection
 
-```{r, PrepData_direction, echo=TRUE}
-outlines_combined_nicolas_2016_centered_scaled <- Momocs::coo_slidedirection(outlines_combined_nicolas_2016_centered_scaled, 
-                             direction = "up")
+R help: Shapes are centered and then, according to direction, the point northwards, southwards, eastwards or westwards the centroid, becomes the first point with coo_slide. 'right' is possibly the most sensible option (and is by default), since 0 radians points eastwards, relatively to the origin. This should be followed by a coo_untiltx is most cases to remove any rotationnal dephasing/bias.
+
+```{r PrepData coo_slidedirection, echo=TRUE}
+
+#outlines_combined_SFP_2023_centered_scaled <- Momocs::coo_slidedirection(outlines_combined_SFP_2023_centered_scaled, direction = "up")
+
+#Original code:
+outlines_combined_nicolas_2016_centered_scaled <- Momocs::coo_slidedirection(outlines_combined_nicolas_2016_centered_scaled, direction = "up")
 
 #One code chunk was left out of the original document:
-
-# Momocs::panel(outlines_combined_nicolas_2016_centered_scaled)
+#Momocs::panel(outlines_combined_nicolas_2016_centered_scaled)
 ```
 
+Soren: I think that what is going on in step (1.2)-(1.4) is:
+
+(1.2) that the data is centered in the origin, 
+(1.3) the data is scaled by a 'scale factor' (if provided) and dividing the coordinates by 'scale'
+(1.4) defines the direction of the data (by default to the right)
 
 ### (2) Unification of outlines with catalogue-dataframe ###
 
-#Read in .csv files
+# (2.1) Read in .csv files
 
-```{r, echo=TRUE}
+Here, I could not (for some reason) save the excel file as a .csv. I saved it as a tab delimited file and read it in with the read.table() function. This seemed to work. 
+
+```{r read , echo=TRUE}
 #OBS: Make your own filepath and dataset
 #OBS: look at his dataset before loading
 
-nicolas_fleches_2016_catalog_ids_coordinates <- read.table(file = here("data/SFP_catalog_ID_site_date_vessel_TAB.txt"), sep="\t", header=TRUE)
+#SFP_2023_catalog_ids_coordinates <- read.table(file = here("data/SFP_catalog_ID_site_date_vessel_TAB.txt"), sep="\t", header=TRUE)
 
-#ORIGINAL CODE: nicolas_fleches_2016_catalog_ids_coordinates <- readr::read_csv(file = here("data/nicolas_fleches_2016_catalog_ids_with_coordinates.csv"))
+#ORIGINAL CODE: 
+nicolas_fleches_2016_catalog_ids_coordinates <- readr::read_csv(file = here("data/nicolas_fleches_2016_catalog_ids_with_coordinates.csv"))
 ```
 
-#Set names
+# (2.2) Set names
+
+R help: Functions to get or set the names of an object.
 
 ```{r, echo=TRUE}
-outlines_combined_nicolas_2016_names <- 
-  names(outlines_combined_nicolas_2016_centered_scaled)
+#outlines_combined_SFP_2023_names <- names(outlines_combined_SFP_2023_centered_scaled)
+
+#Original code:
+outlines_combined_nicolas_2016_names <- names(outlines_combined_nicolas_2016_centered_scaled)
 ```
 
-#Split names
+Here he sets the names from the file 'outlines_combined_SFP_2023_centered_scaled' into a new variable with 8 columns and 30 rows
 
-```{r, echo=TRUE}
-outlines_combined_nicolas_2016_names_splitted <- 
-  strsplit(outlines_combined_nicolas_2016_names, split = "_")
+# (2.3) Split names
+
+R help: Split the elements of a character vector x into substrings according to the matches to substring split within them.
+
+Splitting factor is "_" underscore
+
+```{r split names, echo=TRUE}
+#outlines_combined_SFP_2023_names_splitted <- strsplit(outlines_combined_SFP_2023_names, split = "_")
+
+#Original code
+outlines_combined_nicolas_2016_names_splitted <- strsplit(outlines_combined_nicolas_2016_names, split = "_")
 ```
 
-#Make a list() of ID and artifact ID
+He splits the name of my data from '100_JJ_v1' to "100" "JJ" "v1", and makes a matrix containing a 'name' which is a running number (1-240), 'Type' which is a 'character [3]' vector and the splitted name "100", "JJ", "v1"
 
-```{r, echo=TRUE}
+OBS: until here my data looks like his and the code seems to work well! My data also looks the same in the next chunk, but I understand less of it.
+
+# (2.4) Make a list() of ID and artifact ID
+
+R help: Functions to construct, coerce and check for both kinds of R lists.
+
+```{r list ID and artifact ID, echo=TRUE}
+#ID_and_artefact_ID_list <- list()
+#for (name_index in 1:length(outlines_combined_SFP_2023_names)){
+  
+#  ID_and_artefact_ID_interrim_df <- data.frame(ID = paste0(outlines_combined_SFP_2023_names_splitted[[name_index]][1], "-", outlines_combined_SFP_2023_names_splitted[[name_index]][2]),
+#                                               ID_artefact <- outlines_combined_SFP_2023_names[[name_index]])
+#  names(ID_and_artefact_ID_interrim_df) <- c("ID", "ID_artefact")
+#  ID_and_artefact_ID_list[[name_index]] <- ID_and_artefact_ID_interrim_df
+  
+#}
+
+#Original code:
+
 ID_and_artefact_ID_list <- list()
 for (name_index in 1:length(outlines_combined_nicolas_2016_names)){
   
@@ -204,16 +268,51 @@ for (name_index in 1:length(outlines_combined_nicolas_2016_names)){
   ID_and_artefact_ID_list[[name_index]] <- ID_and_artefact_ID_interrim_df
   
 }
+```
 
+He builds two sets of data:
+'ID_and_artefact_ID_list', 'ID_and_artefact_ID_interrim_df' 
+
+and one value: 
+'ID_artefact'
+
+Q: Here my data still looks like his, but I do not understand why it only takes one piece of data "UK_66_XX_pseudo_no_2" in his data file, and to what function this is. It does the same in my data that looks like "99_KN_v12"
+
+Thought: Perhaps I should change my excel data to have the 'site code', 'running number' and 'vessel number' to get my data to look like his?
+
+Thought: Perhaps I should also rename my DiaOutline data to have the site code first? this would also change my data to look like his
+
+# (2.5) do.call()
+
+R help (do.call): do.call constructs and executes a function call from a name or a function and a list of arguments to be passed to it.
+
+R help (rbind) has two functions:
+
+1) Combine R Objects by Rows or Columns: Take a sequence of vector, matrix or data-frame arguments and combine by columns or rows, respectively. These are generic functions with methods for other R classes.
+
+2) Combine Sparse Matrices by Rows or Columns: Take a sequence of vector, matrix or spam object arguments and combine by columns or rows, respectively.
+
+```{r, echo=TRUE}
 ID_and_artefact_ID_df <- 
   do.call("rbind", ID_and_artefact_ID_list)
-
-#Joins the data in the first column "ID" 
-
-#nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, nicolas_fleches_2016_catalog_ids_coordinates, by = "Region")
-
-#ORIGINAL CODE: nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, nicolas_fleches_2016_catalog_ids_coordinates, by = "ID")
 ```
+
+He calls "rbind" to the data frame 'ID_and_artefact_ID_df' using the 'ID_and_artefact_list' list we made earlier
+
+# (2.6) Joins the data in the first column "ID" and make a new variable
+
+R help (inner_join): 
+The mutating joins add columns from y to x, matching rows based on the keys: 
+'inner_join(): includes all rows in x and y.'
+
+```{r, echo=TRUE}
+#SFP_2023_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, SFP_2023_catalog_ids_coordinates, by = "ID")
+
+#ORIGINAL CODE: 
+nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, nicolas_fleches_2016_catalog_ids_coordinates, by = "ID")
+```
+
+Q+A: In my data set the above function has a problem with 'ID'. I think I have to change my excel and Diaoutline data to have the site ID first and then the running number. Also, I think that I should copy+paste the same headlines as he has in his excel data set???
 
 #Make an Out object
 
