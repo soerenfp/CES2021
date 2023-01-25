@@ -1,7 +1,7 @@
 ID	site	context	region	date	Phase	vessel no	class	lat	lng
 DM-01	Dia Mara	NA	IND	500-1000AD	NA	v1	NA	NA	NA
 DM-02	Dia Mara	NA	IND	500-1000AD	NA	v2	NA	NA	NA
-DM-03	Dia Mara	NA	IND	1000-1600AD	NA	v1	NA	NA	NA
+DM-03 	Dia Mara	NA	IND	1000-1600AD	NA	v1	NA	NA	NA
 DM-04	Dia Mara	NA	IND	1000-1600AD	NA	v2	NA	NA	NA
 DM-05	Dia Mara	NA	IND	1000-1600AD	NA	v3	NA	NA	NA
 DM-06	Dia Mara	NA	IND	1000-1600AD	NA	v4	NA	NA	NA
@@ -186,7 +186,7 @@ TB-09	Toubel	NA	Lakes Region	1295-1430AD	NA	v9	NA	NA	NA
 TB-10	Toubel	NA	Lakes Region	1295-1430AD	NA	v10	NA	NA	NA
 TB-11	Toubel	NA	Lakes Region	1295-1430AD	NA	v11	NA	NA	NA
 TB-12	Toubel	NA	Lakes Region	1295-1430AD	NA	v12	NA	NA	NA
-TB-13	Toubel	NA	Lakes Region	1295-1430AD	NA	v13	NA	NA	NA
+TB-14	Toubel	NA	Lakes Region	1295-1430AD	NA	v13	NA	NA	NA
 WK-01	Winde Koroji	NA	Niger Bend	NA	Horizon A	v1	NA	NA	NA
 WK-02	Winde Koroji	NA	Niger Bend	NA	Horizon A	v2	NA	NA	NA
 WK-03	Winde Koroji	NA	Niger Bend	NA	Horizon A	v3	NA	NA	NA

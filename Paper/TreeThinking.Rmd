@@ -139,10 +139,10 @@ saveRDS(allDiatomOutlines, file = "DOcoordinates.RDS")
 #OBS: make your own file path
 #OBS: look at his dataset before loading
 
-#outlines_combined_SFP_2023 <- readRDS("DOcoordinates.RDS")
+outlines_combined_SFP_2023 <- readRDS("DOcoordinates.RDS")
 
 #Original code:
-outlines_combined_nicolas_2016 <- readRDS(file = file.path(here("data/outlines_combined_nicholas_2016.RDS")))
+#outlines_combined_nicolas_2016 <- readRDS(file = file.path(here("data/outlines_combined_nicholas_2016.RDS")))
 ```
 
 # (1.2) Prepare data: coo_center
@@ -150,10 +150,10 @@ outlines_combined_nicolas_2016 <- readRDS(file = file.path(here("data/outlines_c
 R help: Returns a shape centered on the origin.
 
 ```{r PrepData coo_center, echo=TRUE}
-#outlines_combined_SFP_2023_centered <- Momocs::coo_centre(outlines_combined_SFP_2023)
+outlines_combined_SFP_2023_centered <- Momocs::coo_centre(outlines_combined_SFP_2023)
 
 #Original code:
-outlines_combined_nicolas_2016_centered <- Momocs::coo_centre(outlines_combined_nicolas_2016)
+#outlines_combined_nicolas_2016_centered <- Momocs::coo_centre(outlines_combined_nicolas_2016)
 ```
 
 # (1.3) Prepare data: coo_scale
@@ -169,10 +169,10 @@ coo_scalex applies a scaling (or shrinking) parallel to the x-axis, coo_scaley d
 Q: Should I here provide a 'scale factor'?
 
 ```{r PrepData coo_scale, echo=TRUE}
-#outlines_combined_SFP_2023_centered_scaled <- Momocs::coo_scale(outlines_combined_SFP_2023_centered)
+outlines_combined_SFP_2023_centered_scaled <- Momocs::coo_scale(outlines_combined_SFP_2023_centered)
 
 #Original code:
-outlines_combined_nicolas_2016_centered_scaled <- Momocs::coo_scale(outlines_combined_nicolas_2016_centered)
+#outlines_combined_nicolas_2016_centered_scaled <- Momocs::coo_scale(outlines_combined_nicolas_2016_centered)
 ```
 
 # (1.4) Prepare data: coo_slidedirection
@@ -181,10 +181,10 @@ R help: Shapes are centered and then, according to direction, the point northwar
 
 ```{r PrepData coo_slidedirection, echo=TRUE}
 
-#outlines_combined_SFP_2023_centered_scaled <- Momocs::coo_slidedirection(outlines_combined_SFP_2023_centered_scaled, direction = "up")
+outlines_combined_SFP_2023_centered_scaled <- Momocs::coo_slidedirection(outlines_combined_SFP_2023_centered_scaled, direction = "up")
 
 #Original code:
-outlines_combined_nicolas_2016_centered_scaled <- Momocs::coo_slidedirection(outlines_combined_nicolas_2016_centered_scaled, direction = "up")
+#outlines_combined_nicolas_2016_centered_scaled <- Momocs::coo_slidedirection(outlines_combined_nicolas_2016_centered_scaled, direction = "up")
 
 #One code chunk was left out of the original document:
 #Momocs::panel(outlines_combined_nicolas_2016_centered_scaled)
@@ -206,10 +206,10 @@ Here, I could not (for some reason) save the excel file as a .csv. I saved it as
 #OBS: Make your own filepath and dataset
 #OBS: look at his dataset before loading
 
-#SFP_2023_catalog_ids_coordinates <- read.table(file = here("data/SFP_catalog_ID_site_date_vessel_TAB.txt"), sep="\t", header=TRUE)
+SFP_2023_catalog_ids_coordinates <- read.table(file = here("data/SFP_catalog_ID_site_date_vessel_TAB.txt"), sep="\t", header=TRUE)
 
 #ORIGINAL CODE: 
-nicolas_fleches_2016_catalog_ids_coordinates <- readr::read_csv(file = here("data/nicolas_fleches_2016_catalog_ids_with_coordinates.csv"))
+#nicolas_fleches_2016_catalog_ids_coordinates <- readr::read_csv(file = here("data/nicolas_fleches_2016_catalog_ids_with_coordinates.csv"))
 ```
 
 # (2.2) Set names
@@ -217,10 +217,10 @@ nicolas_fleches_2016_catalog_ids_coordinates <- readr::read_csv(file = here("dat
 R help: Functions to get or set the names of an object.
 
 ```{r, echo=TRUE}
-#outlines_combined_SFP_2023_names <- names(outlines_combined_SFP_2023_centered_scaled)
+outlines_combined_SFP_2023_names <- names(outlines_combined_SFP_2023_centered_scaled)
 
 #Original code:
-outlines_combined_nicolas_2016_names <- names(outlines_combined_nicolas_2016_centered_scaled)
+#outlines_combined_nicolas_2016_names <- names(outlines_combined_nicolas_2016_centered_scaled)
 ```
 
 Here he sets the names from the file 'outlines_combined_SFP_2023_centered_scaled' into a new variable with 8 columns and 30 rows
@@ -232,10 +232,10 @@ R help: Split the elements of a character vector x into substrings according to 
 Splitting factor is "_" underscore
 
 ```{r split names, echo=TRUE}
-#outlines_combined_SFP_2023_names_splitted <- strsplit(outlines_combined_SFP_2023_names, split = "_")
+outlines_combined_SFP_2023_names_splitted <- strsplit(outlines_combined_SFP_2023_names, split = "_")
 
 #Original code
-outlines_combined_nicolas_2016_names_splitted <- strsplit(outlines_combined_nicolas_2016_names, split = "_")
+#outlines_combined_nicolas_2016_names_splitted <- strsplit(outlines_combined_nicolas_2016_names, split = "_")
 ```
 
 He splits the name of my data from '100_JJ_v1' to "100" "JJ" "v1", and makes a matrix containing a 'name' which is a running number (1-240), 'Type' which is a 'character [3]' vector and the splitted name "100", "JJ", "v1"
@@ -247,27 +247,27 @@ OBS: until here my data looks like his and the code seems to work well! My data 
 R help: Functions to construct, coerce and check for both kinds of R lists.
 
 ```{r list ID and artifact ID, echo=TRUE}
-#ID_and_artefact_ID_list <- list()
-#for (name_index in 1:length(outlines_combined_SFP_2023_names)){
-  
-#  ID_and_artefact_ID_interrim_df <- data.frame(ID = paste0(outlines_combined_SFP_2023_names_splitted[[name_index]][1], "-", outlines_combined_SFP_2023_names_splitted[[name_index]][2]),
-#                                               ID_artefact <- outlines_combined_SFP_2023_names[[name_index]])
-#  names(ID_and_artefact_ID_interrim_df) <- c("ID", "ID_artefact")
-#  ID_and_artefact_ID_list[[name_index]] <- ID_and_artefact_ID_interrim_df
-  
-#}
-
-#Original code:
-
 ID_and_artefact_ID_list <- list()
-for (name_index in 1:length(outlines_combined_nicolas_2016_names)){
+for (name_index in 1:length(outlines_combined_SFP_2023_names)){
   
-  ID_and_artefact_ID_interrim_df <- data.frame(ID = paste0(outlines_combined_nicolas_2016_names_splitted[[name_index]][1], "-", outlines_combined_nicolas_2016_names_splitted[[name_index]][2]),
-                                               ID_artefact <- outlines_combined_nicolas_2016_names[[name_index]])
+  ID_and_artefact_ID_interrim_df <- data.frame(ID = paste0(outlines_combined_SFP_2023_names_splitted[[name_index]][1], "-", outlines_combined_SFP_2023_names_splitted[[name_index]][2]),
+                                               ID_artefact <- outlines_combined_SFP_2023_names[[name_index]])
   names(ID_and_artefact_ID_interrim_df) <- c("ID", "ID_artefact")
   ID_and_artefact_ID_list[[name_index]] <- ID_and_artefact_ID_interrim_df
   
 }
+
+#Original code:
+
+#ID_and_artefact_ID_list <- list()
+#for (name_index in 1:length(outlines_combined_nicolas_2016_names)){
+#  
+#  ID_and_artefact_ID_interrim_df <- data.frame(ID = paste0(outlines_combined_nicolas_2016_names_splitted[[name_index]][1], "-", outlines_combined_nicolas_2016_names_splitted[[name_index]][2]),
+#                                               ID_artefact <- outlines_combined_nicolas_2016_names[[name_index]])
+#  names(ID_and_artefact_ID_interrim_df) <- c("ID", "ID_artefact")
+#  ID_and_artefact_ID_list[[name_index]] <- ID_and_artefact_ID_interrim_df
+  
+#}
 ```
 
 He builds two sets of data:
@@ -306,10 +306,12 @@ The mutating joins add columns from y to x, matching rows based on the keys:
 'inner_join(): includes all rows in x and y.'
 
 ```{r, echo=TRUE}
-#SFP_2023_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, SFP_2023_catalog_ids_coordinates, by = "ID")
+SFP_2023_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, SFP_2023_catalog_ids_coordinates, by = "ID")
+
+#setdiff(ID_and_artefact_ID_df$ID, SFP_2023_catalog_ids_coordinates$ID) #to see the problem with the two data frames
 
 #ORIGINAL CODE: 
-nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, nicolas_fleches_2016_catalog_ids_coordinates, by = "ID")
+#nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID <- dplyr::inner_join(ID_and_artefact_ID_df, nicolas_fleches_2016_catalog_ids_coordinates, by = "ID")
 ```
 
 Q+A: In my data set the above function has a problem with 'ID'. I think I have to change my excel and Diaoutline data to have the site ID first and then the running number. Also, I think that I should copy+paste the same headlines as he has in his excel data set???
@@ -319,9 +321,9 @@ Q+A: In my data set the above function has a problem with 'ID'. I think I have t
 ```{r, echo=TRUE}
 #OBS: here is the first 'fac'
 
-outlines_combined_nicolas_2016_centered_scaled <- 
-  Momocs::Out(outlines_combined_nicolas_2016_centered_scaled$coo,
-              fac = ID_and_artefact_ID_df) #OBS: here I entered "ID_and_artifact_ID_df", perhaps not correct?
+outlines_combined_SFP_2023_centered_scaled <- 
+  Momocs::Out(outlines_combined_SFP_2023_centered_scaled$coo,
+              fac = SFP_2023_catalog_ids_coordinates_artefact_ID) #OBS: set fac as-> fac=SFP_2023_catalog_ids_coordinates_artefact_ID
 
 #ORIGINAL CODE: 
 #outlines_combined_nicolas_2016_centered_scaled <- Momocs::Out(outlines_combined_nicolas_2016_centered_scaled$coo, fac = nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID)
@@ -332,25 +334,25 @@ outlines_combined_nicolas_2016_centered_scaled <-
 ```{r, echo=TRUE}
 #OBS: Perhaps you do not need this step!
 
-outlines_combined_nicolas_2016_centered_scaled <- 
-  Momocs::filter(outlines_combined_nicolas_2016_centered_scaled, 
-                 !ID_artefact %in% c("UK_60_XX_pseudo_no_10", "UK_15_XX_pseudo_no_4"))
+#outlines_combined_SFP_2023_centered_scaled <- 
+#  Momocs::filter(outlines_combined_SFP_2023_centered_scaled, 
+#                 !ID_artefact %in% c("UK_60_XX_pseudo_no_10", "UK_15_XX_pseudo_no_4")) #You need to change the data in c()
 ```
 
 #List the number of artifacts
 
 ```{r, echo=TRUE}
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Dia Mara"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Dia Shoma"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Jenne-jeno"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "KNTII"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Korounkorokale"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Ounjougou"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Timbuktu"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Toubel"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Winde Koroji"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Dhar Tichitt"))
-length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Karkarichinkat"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Dia Mara"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Dia Shoma"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Jenne-jeno"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "KNTII"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Korounkorokale"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Ounjougou"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Timbuktu"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Toubel"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Winde Koroji"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Dhar Tichitt"))
+length(which(SFP_2023_catalog_ids_coordinates$site == "Karkarichinkat"))
 
 #ORIGINAL CODE BELOW
 #length(which(nicolas_fleches_2016_catalog_ids_coordinates_artefact_ID$country == "Denmark")) # number of artefacts from denmark
@@ -363,8 +365,8 @@ length(which(nicolas_fleches_2016_catalog_ids_coordinates$Site == "Karkarichinka
 ```{r, echo=TRUE}
 # Estimates the number of harmonics required for the Fourier methods implemented in Momocs
 
-outlines_combined_nicolas_2016_centered_scaled_harmonics <- 
-  Momocs::calibrate_harmonicpower_efourier(outlines_combined_nicolas_2016_centered_scaled, 
+outlines_combined_SFP_2023_centered_scaled_harmonics <- 
+  Momocs::calibrate_harmonicpower_efourier(outlines_combined_SFP_2023_centered_scaled, 
                                            plot = F)
 
 # outlines_combined_nicolas_2016_centered_scaled_harmonics
@@ -373,31 +375,31 @@ outlines_combined_nicolas_2016_centered_scaled_harmonics <-
 #efourier
 
 ```{r, echo=TRUE}
-outlines_combined_nicolas_2016_centered_scaled_efourier <- 
-  Momocs::efourier(outlines_combined_nicolas_2016_centered_scaled,
-                   nb.h = as.matrix(outlines_combined_nicolas_2016_centered_scaled_harmonics[["minh"]])[[4,1]], # harmonics for 99.9%
+outlines_combined_SFP_2023_centered_scaled_efourier <- 
+  Momocs::efourier(outlines_combined_SFP_2023_centered_scaled,
+                   nb.h = as.matrix(outlines_combined_SFP_2023_centered_scaled_harmonics[["minh"]])[[4,1]], # harmonics for 99.9%
                    norm = F) # you selected `norm=TRUE`, which is not recommended. See ?efourier --> probably no problem in our case
 ```
 
 #PCA
 
 ```{r, echo=TRUE}
-outlines_combined_nicolas_2016_centered_scaled_PCA <- 
-  Momocs::PCA(outlines_combined_nicolas_2016_centered_scaled_efourier) # PCA on Coe objects, using prcomp.
+outlines_combined_SFP_2023_centered_scaled_PCA <- 
+  Momocs::PCA(outlines_combined_SFP_2023_centered_scaled_efourier) # PCA on Coe objects, using prcomp.
 ```
 
 #Minimum number of PCs
 
 ```{r, echo=TRUE}
-minimum_no_of_pcs_nicolas <- 
-  Momocs::scree_min(outlines_combined_nicolas_2016_centered_scaled_PCA,
+minimum_no_of_pcs_SFP <- 
+  Momocs::scree_min(outlines_combined_SFP_2023_centered_scaled_PCA,
                     prop = 0.95) # minimum number of axis to use to retain a given proportion (i.e. prop = 0.99 to describe 99% of the variation) -- reduces computing time in the phylogeny estimation step:
 ```
 
 #Make a scree_plot of the PCA
 
 ```{r, echo=TRUE}
-Momocs::scree_plot(outlines_combined_nicolas_2016_centered_scaled_PCA)
+Momocs::scree_plot(outlines_combined_SFP_2023_centered_scaled_PCA)
 ```
 
 
@@ -406,17 +408,17 @@ Momocs::scree_plot(outlines_combined_nicolas_2016_centered_scaled_PCA)
 #pch.group
 
 ```{r, echo=TRUE}
-pch.group <- c(rep(21, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dia Mara"))), 
-               rep(22, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dia Shoma"))),
-               rep(23, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Jenne-jeno"))),  
-               rep(24, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "KNTII"))),  
-               rep(25, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Korounkorokale"))),  
-               rep(26, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Ounjougou"))),  
-               rep(27, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Timbuktu"))),  
-               rep(28, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Toubel"))),  
-               rep(29, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Winde Koroji"))),  
-               rep(30, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dhar Tichitt"))),  
-               rep(31, times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Karkarichinkat"))))
+pch.group <- c(rep(21, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Dia Mara"))), 
+               rep(21, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Dia Shoma"))),
+               rep(21, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Jenne-jeno"))),  
+               rep(22, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "KNTII"))),  
+               rep(23, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Korounkorokale"))),  
+               rep(24, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Ounjougou"))),  
+               rep(22, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Timbuktu"))),  
+               rep(22, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Toubel"))),  
+               rep(24, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Winde Koroji"))),  
+               rep(25, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Dhar Tichitt"))),  
+               rep(25, times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Karkarichinkat"))))
 
 
 #ORIGINAL CODE:
@@ -428,17 +430,17 @@ pch.group <- c(rep(21, times=length(which(outlines_combined_nicolas_2016_centere
 
 ```{r, echo=TRUE}
 
-col.group <- c(rep("skyblue2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dia Mara"))), 
-               rep("gold", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dia Shoma"))),
-               rep("green2", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Jenne-jeno"))), 
-               rep("darkblue", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "KNTII"))), 
-               rep("red1", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Korounkorokale"))), 
-               rep("orange1", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Ounjougou"))), 
-               rep("yellow1", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Timbuktu"))), 
-               rep("purple", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Toubel"))), 
-               rep("magenta", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Winde Koroji"))), 
-               rep("grey", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Dhar Tichitt"))), 
-               rep("red3", times=length(which(outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID == "Karkarichinkat"))))
+col.group <- c(rep("skyblue2", times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Dia Mara"))), 
+               rep("gold",     times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Dia Shoma"))),
+               rep("green2",   times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Jenne-jeno"))), 
+               rep("darkblue", times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "KNTII"))), 
+               rep("red1",     times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Korounkorokale"))), 
+               rep("orange1",  times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Ounjougou"))), 
+               rep("yellow1",  times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Timbuktu"))), 
+               rep("purple",   times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Toubel"))), 
+               rep("magenta",  times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Winde Koroji"))), 
+               rep("grey",     times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Dhar Tichitt"))), 
+               rep("red3",     times=length(which(outlines_combined_SFP_2023_centered_scaled_PCA$fac$site == "Karkarichinkat"))))
 
 #ORIGINAL CODE:
 
@@ -448,10 +450,10 @@ col.group <- c(rep("skyblue2", times=length(which(outlines_combined_nicolas_2016
 #Plot
 
 ```{r, echo=TRUE}
-plot(outlines_combined_nicolas_2016_centered_scaled_PCA$x[,1],
-     outlines_combined_nicolas_2016_centered_scaled_PCA$x[,2],
-     xlab=paste("PCA 1 (", round(summary(outlines_combined_nicolas_2016_centered_scaled_PCA)$importance[2]*100, 1), "%)", sep = ""),
-     ylab=paste("PCA 2 (", round(summary(outlines_combined_nicolas_2016_centered_scaled_PCA)$importance[5]*100, 1), "%)", sep = ""),
+plot(outlines_combined_SFP_2023_centered_scaled_PCA$x[,1],
+     outlines_combined_SFP_2023_centered_scaled_PCA$x[,2],
+     xlab=paste("PCA 1 (", round(summary(outlines_combined_SFP_2023_centered_scaled_PCA)$importance[2]*100, 1), "%)", sep = ""),
+     ylab=paste("PCA 2 (", round(summary(outlines_combined_SFP_2023_centered_scaled_PCA)$importance[5]*100, 1), "%)", sep = ""),
      pch=pch.group,
      col="black",
      bg=col.group,
@@ -459,6 +461,8 @@ plot(outlines_combined_nicolas_2016_centered_scaled_PCA$x[,1],
      las=1,
      asp=1,
      main = "SFP 2023; PCA of vessel outline shapes")
+
+#Problem with the grid lines and legend below
 
 # Add grid lines
 abline(v=0, lty=2, col="grey50")
@@ -469,7 +473,7 @@ legend("bottomleft",
        legend=c("Dia Mara", "Dia Shoma", "Jenne-jeno", "KNTII", "Korounkorokale", "Ounjougou", "Timbuktu", "Toubel", "Winde Koroji", "Dhar Tichitt", "Karkarichinkat"), 
        col="black", 
        pt.bg=c("skyblue2", "gold", "green2", "darkblue", "red1", "orange1", "yellow1", "purple", "magenta", "grey", "red3"), 
-       pch=c(21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31), 
+       pch=c(21, 22, 23, 24, 25), 
        pt.cex=1.5)
 ```
 
@@ -479,17 +483,17 @@ legend("bottomleft",
 #Remove outliers
 
 ```{r, echo=TRUE}
-nicolas_outliers_db <- 
-  fpc::dbscan(outlines_combined_nicolas_2016_centered_scaled_PCA$x, 
-              eps = 0.3, 
+SFP_outliers_db <- 
+  fpc::dbscan(outlines_combined_SFP_2023_centered_scaled_PCA$x, 
+              eps = 0.3, #change the eps for limit
               MinPts = 3)
 ```
 
 #Plot outliers 
 
 ```{r, echo=TRUE}
-plot(nicolas_outliers_db, 
-     outlines_combined_nicolas_2016_centered_scaled_PCA$x, 
+plot(SFP_outliers_db, 
+     outlines_combined_SFP_2023_centered_scaled_PCA$x, 
      main = "DBSCAN", 
      frame = FALSE)
 ```
@@ -497,49 +501,50 @@ plot(nicolas_outliers_db,
 #Make a data frame
 
 ```{r, echo=TRUE}
-nicolas_outliers_cluster <- 
-  data.frame(name = row.names(outlines_combined_nicolas_2016_centered_scaled_PCA$x), 
-             value = nicolas_outliers_db$cluster, 
+SFP_outliers_cluster <- 
+  data.frame(name = row.names(outlines_combined_SFP_2023_centered_scaled_PCA$x), 
+             value = SFP_outliers_db$cluster, 
              row.names = NULL)
 ```
 
 #Subset outliers
 
 ```{r, echo=TRUE}
-nicolas_outliers_cluster_outlier_names <- 
-  subset(nicolas_outliers_cluster, value != 1)
+SFP_outliers_cluster_outlier_names <- 
+  subset(SFP_outliers_cluster, value != 1)
 ```
 
 #(Dont know)
 
 ```{r, echo=TRUE}
-outlines_combined_nicolas_2016_centered_scaled_PCA$fac$outlier_names <- NA
-outlines_combined_nicolas_2016_centered_scaled$fac$cluster <- as.factor(nicolas_outliers_cluster$value)
+outlines_combined_SFP_2023_centered_scaled_PCA$fac$outlier_names <- NA
 
-for (vector_index in 1:length(match(nicolas_outliers_cluster_outlier_names$name, 
-                                    outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID_artefact))){
+outlines_combined_SFP_2023_centered_scaled$fac$cluster <- as.factor(SFP_outliers_cluster$value)
+
+for (vector_index in 1:length(match(SFP_outliers_cluster_outlier_names$name, 
+                                    outlines_combined_SFP_2023_centered_scaled_PCA$fac$ID_artefact))){
   
-  current_index <- match(nicolas_outliers_cluster_outlier_names$name, 
-                         outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID_artefact)[vector_index]
+  current_index <- match(SFP_outliers_cluster_outlier_names$name, 
+                         outlines_combined_SFP_2023_centered_scaled_PCA$fac$ID_artefact)[vector_index]
   
-  outlines_combined_nicolas_2016_centered_scaled_PCA$fac$outlier_names[current_index] <- nicolas_outliers_cluster_outlier_names$name[vector_index]
+  outlines_combined_SFP_2023_centered_scaled_PCA$fac$outlier_names[current_index] <- SFP_outliers_cluster_outlier_names$name[vector_index]
 }
 ```
 
 #Look at the shape of the outliers
 
 ```{r, echo=TRUE}
-nicolas_2016_with_outliers <- 
-  Momocs::slice(outlines_combined_nicolas_2016_centered_scaled, 
-                match(nicolas_outliers_cluster_outlier_names$name, 
-                      outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID_artefact))
+SFP_2023_with_outliers <- 
+  Momocs::slice(outlines_combined_SFP_2023_centered_scaled, 
+                match(SFP_outliers_cluster_outlier_names$name, 
+                      outlines_combined_SFP_2023_centered_scaled_PCA$fac$ID_artefact))
 ```
 
 #Plot outliers
 
 ```{r, echo=TRUE}
-Momocs::panel(nicolas_2016_with_outliers,
-              fac = "country_code",
+Momocs::panel(SFP_2023_with_outliers,
+              #fac = "country_code", #Perhaps I need to make a new 'fac', or this is the only vessel that is an outlier?
               names = T,
               col = "grey")
 ```
@@ -550,61 +555,62 @@ Momocs::panel(nicolas_2016_with_outliers,
 #Make a new dataset
 
 ```{r, echo=TRUE}
-nicolas_2016_without_outliers <- 
-  Momocs::slice(outlines_combined_nicolas_2016_centered_scaled, 
-                -match(nicolas_outliers_cluster_outlier_names$name, 
-                       outlines_combined_nicolas_2016_centered_scaled_PCA$fac$ID_artefact))
+SFP_2023_without_outliers <- 
+  Momocs::slice(outlines_combined_SFP_2023_centered_scaled, 
+                -match(SFP_outliers_cluster_outlier_names$name, 
+                       outlines_combined_SFP_2023_centered_scaled_PCA$fac$ID_artefact))
 ```
 
 #Calibrate harmonics
 
 ```{r, echo=TRUE}
-nicolas_2016_without_outliers_harmonics <- 
-  Momocs::calibrate_harmonicpower_efourier(nicolas_2016_without_outliers, 
+SFP_2023_without_outliers_harmonics <- 
+  Momocs::calibrate_harmonicpower_efourier(SFP_2023_without_outliers, 
                                            plot = F)  # Estimates the number of harmonics required for the Fourier methods implemented in Momocs. This is the only step in this section that produces data we need in the subsequent step.
 ```
 
 #Efourier
 
 ```{r, echo=TRUE}
-nicolas_2016_without_outliers_efourier <- 
-  Momocs::efourier(nicolas_2016_without_outliers,
-                   nb.h = as.matrix(nicolas_2016_without_outliers_harmonics[["minh"]])[[4,1]], # harmonics for 99.9%
+SFP_2023_without_outliers_efourier <- 
+  Momocs::efourier(SFP_2023_without_outliers,
+                   nb.h = as.matrix(SFP_2023_without_outliers_harmonics[["minh"]])[[4,1]], # harmonics for 99.9%
                    norm = F)
 ```
 
 #PCA
 
 ```{r, echo=TRUE}
-nicolas_2016_without_outliers_PCA <- 
-  Momocs::PCA(nicolas_2016_without_outliers_efourier) # PCA on Coe objects, using prcomp.
+SFP_2023_without_outliers_PCA <- 
+  Momocs::PCA(SFP_2023_without_outliers_efourier) # PCA on Coe objects, using prcomp.
 ```
 
 #Plot PCA
 
 ```{r, echo=TRUE}
-nicolas_2016_screeplot_wo_outliers <- 
-  Momocs::scree_plot(nicolas_2016_without_outliers_PCA, 
+SFP_2023_screeplot_wo_outliers <- 
+  Momocs::scree_plot(SFP_2023_without_outliers_PCA, 
                      nax = 1:50)
 ```
 
-#See how many PCs will give 99.9% - 39 PCs gets there
+#See how many PCs will give 99.9% - 23 PCs gets there
 
 ```{r, echo=TRUE}
-summary(nicolas_2016_without_outliers_PCA)
+summary(SFP_2023_without_outliers_PCA)
 ```
 
 #Insert (39) 99.9% outliers
 
 ```{r, echo=TRUE}
-minimum_no_of_pcs_nicolas_without_outliers <- 39
+minimum_no_of_pcs_SFP_without_outliers <- 23 #Perhaps I need to change this to 20? (org. 39)
+
   # ncol(nicolas_2016_without_outliers_PCA$x) #use all PC axes (Left out in original)
 ```
 
 #(Dont know)
 
 ```{r, echo=TRUE}
-gg_nicolas <- Momocs::PCcontrib(nicolas_2016_without_outliers_PCA,
+gg_SFP <- Momocs::PCcontrib(SFP_2023_without_outliers_PCA,
                                 nax = 1:5,
                                 sd.r = c(-2,-1,0,1,2))
 ```
@@ -612,7 +618,7 @@ gg_nicolas <- Momocs::PCcontrib(nicolas_2016_without_outliers_PCA,
 #Plot
 
 ```{r, echo=TRUE}
-gg_nicolas$gg + 
+gg_SFP$gg + 
   geom_polygon(fill="slategrey", col="black") + 
   theme_minimal(base_size = 20) +
   theme(axis.text.x=element_blank(),
@@ -624,7 +630,7 @@ gg_nicolas$gg +
 #Save data .png
 
 ```{r, echo=TRUE}
-ggsave(here("figures/nicolas_arrowheads_pca_contrib.png"),
+ggsave(here("figures/SFP_vessels_pca_contrib.png"),
        h = 10, w = 8)
 ```
 
@@ -632,7 +638,7 @@ ggsave(here("figures/nicolas_arrowheads_pca_contrib.png"),
 
 ```{r, echo=TRUE}
 #library(ggplot2)
-gg_nicolas <- gg_nicolas$gg +
+gg_SFP <- gg_SFP$gg +
   theme_bw() +
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank(),
@@ -645,79 +651,128 @@ gg_nicolas <- gg_nicolas$gg +
 #Create pch.group
 
 ```{r, echo=TRUE}
-pch.group <- c(rep(21, times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "Denmark"))), 
-               rep(22, times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "France"))),
-               rep(23, times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "United Kingdom"))))
+pch.group <- c(rep(21, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Dia Mara"))), 
+               rep(21, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Dia Shoma"))),
+               rep(21, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Jenne-jeno"))),  
+               rep(22, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "KNTII"))),  
+               rep(23, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Korounkorokale"))),  
+               rep(24, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Ounjougou"))),  
+               rep(22, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Timbuktu"))),  
+               rep(22, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Toubel"))),  
+               rep(24, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Winde Koroji"))),  
+               rep(25, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Dhar Tichitt"))),  
+               rep(25, times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Karkarichinkat"))))
+
+
+#Original code:
+
+#pch.group <- c(rep(21, times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "Denmark"))), 
+#               rep(22, times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "France"))),
+#               rep(23, times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "United Kingdom"))))
 ```
 
 #Create col.group
 
 ```{r, echo=TRUE}
-col.group <- c(rep("skyblue2", times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "Denmark"))), 
-               rep("gold", times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "France"))),
-               rep("green2", times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "United Kingdom"))))
+col.group <- c(rep("skyblue2", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Dia Mara"))), 
+               rep("gold", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Dia Shoma"))),
+               rep("green2", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Jenne-jeno"))), 
+               rep("darkblue", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "KNTII"))), 
+               rep("red1", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Korounkorokale"))), 
+               rep("orange1", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Ounjougou"))), 
+               rep("yellow1", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Timbuktu"))), 
+               rep("purple", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Toubel"))), 
+               rep("magenta", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Winde Koroji"))), 
+               rep("grey", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Dhar Tichitt"))), 
+               rep("red3", times=length(which(SFP_2023_without_outliers_PCA$fac$site == "Karkarichinkat"))))
+
+#Original code:
+#col.group <- c(rep("skyblue2", times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "Denmark"))), 
+#               rep("gold", times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "France"))),
+#               rep("green2", times=length(which(nicolas_2016_without_outliers_PCA$fac$country == "United Kingdom"))))
 ```
+
+Soren: Problem with col.group -> empty
 
 #Plot
 
 ```{r, echo=TRUE}
-plot(nicolas_2016_without_outliers_PCA$x[,1],
-     nicolas_2016_without_outliers_PCA$x[,2],
-     xlab=paste("PCA 1 (", round(summary(nicolas_2016_without_outliers_PCA)$importance[2]*100, 1), "%)", sep = ""),
-     ylab=paste("PCA 2 (", round(summary(nicolas_2016_without_outliers_PCA)$importance[5]*100, 1), "%)", sep = ""),
+plot(SFP_2023_without_outliers_PCA$x[,1],
+     SFP_2023_without_outliers_PCA$x[,2],
+     xlab=paste("PCA 1 (", round(summary(SFP_2023_without_outliers_PCA)$importance[2]*100, 1), "%)", sep = ""),
+     ylab=paste("PCA 2 (", round(summary(SFP_2023_without_outliers_PCA)$importance[5]*100, 1), "%)", sep = ""),
      pch=pch.group,
      col="black",
      bg=col.group,
      cex=1,
      las=1,
      asp=1,
-     main = "Nicolas 2016; PCA of Bell Beaker arrowhead outline shapes without outliers")
+     main = "SFP 2023; PCA of vessel outline shapes without outliers")
+
 # Add grid lines
 abline(v=0, lty=2, col="grey50")
 abline(h=0, lty=2, col="grey50")
-# Add legend
-legend("bottomleft", 
-       legend=c("Denmark", "France", "United Kingdom"), 
-       col="black", 
-       pt.bg=c("skyblue2", "gold", "green2"), 
-       pch=c(21, 22, 24), 
-       pt.cex=1.5)
-```
 
+# Add legend
+#legend("bottomleft", 
+#       legend=c("Denmark", "France", "United Kingdom"), 
+#       col="black", 
+#       pt.bg=c("skyblue2", "gold", "green2"), 
+#       pch=c(21, 22, 24), 
+#       pt.cex=1.5)
+```
+Soren: Until here the code seems to wirk fine! I have some small problems with the plots, adding lines, colours and a legend, but I think that can be fixed.
+
+Soren: I do not like that my PCA1+2 is at 0 in both my plots!!!
 
 ### (6) NJ typochronology ###
 
-#Read .csv data
+#Read .csv data (TAB)
 
 ```{r, echo=TRUE}
-typochronologie_csv <- readr::read_csv(here("data/nicolas_2017_typochronologie.csv"))
+typochronologie_TAB <- read.table(file = here("data/SFP_2023_typochronologie_TAB.txt"), sep="\t", header=TRUE)
 
-typochronologie_csv <- dplyr::distinct(typochronologie_csv, ID_country, .keep_all = T)
+typochronologie_TAB <- dplyr::distinct(typochronologie_TAB, ID_site, .keep_all = T)
+
+#Original code:
+#typochronologie_csv <- readr::read_csv(here("data/nicolas_2017_typochronologie.csv"))
+
+#typochronologie_csv <- dplyr::distinct(typochronologie_csv, ID_country, .keep_all = T)
 ```
 
-#Subset country (UK)
+#Subset sites
 
 ```{r, echo=TRUE}
-typochronologie_csv_UK <- subset(typochronologie_csv, Country == "UK")
+typochronologie_TAB_DM <- subset(typochronologie_TAB, Site == "Dia Mara")
+typochronologie_TAB_DS <- subset(typochronologie_TAB, Site == "Dia Shoma")
+typochronologie_TAB_JJ <- subset(typochronologie_TAB, Site == "Jenne-jeno")
+typochronologie_TAB_KN <- subset(typochronologie_TAB, Site == "KNTII")
+typochronologie_TAB_KO <- subset(typochronologie_TAB, Site == "Korounkorokale")
+typochronologie_TAB_OU <- subset(typochronologie_TAB, Site == "Ounjougou")
+typochronologie_TAB_TI <- subset(typochronologie_TAB, Site == "Timbuktu")
+typochronologie_TAB_TB <- subset(typochronologie_TAB, Site == "Toubel")
+typochronologie_TAB_WK <- subset(typochronologie_TAB, Site == "Winde Koroji")
+typochronologie_TAB_DT <- subset(typochronologie_TAB, Site == "Dhar Tichitt")
+typochronologie_TAB_KK <- subset(typochronologie_TAB, Site == "Karkarichinkat")
 ```
 
-#Subset country (FR)
+#Subset country (FR) OBS: I did that above!
 
 ```{r, echo=TRUE}
-typochronologie_csv_FR <- subset(typochronologie_csv, Country == "FR")
+#typochronologie_csv_FR <- subset(typochronologie_csv, Country == "FR")
 ```
 
 #Make a dataframe
 
 ```{r, echo=TRUE}
-nicolas_2016_without_outliers_PCA_as_df <- 
-  as.data.frame(nicolas_2016_without_outliers_PCA$x[,1:minimum_no_of_pcs_nicolas_without_outliers])
+SFP_2023_without_outliers_PCA_as_df <- 
+  as.data.frame(SFP_2023_without_outliers_PCA$x[,1:minimum_no_of_pcs_SFP_without_outliers])
 ```
 
 #Sapply and split dataframe
 
 ```{r, echo=TRUE}
-nicolas_2016_without_outliers_PCA_as_df$ID_country <- sapply(rownames(nicolas_2016_without_outliers_PCA_as_df),
+SFP_2023_without_outliers_PCA_as_df$ID_country <- sapply(rownames(SFP_2023_without_outliers_PCA_as_df),
                                                              function(x){
                                                                strsplit(x, split = "(?<=.{5})", perl = TRUE)[[1]][1] # RegEx "(?<=.{5})" means: split into chunks of 5 characters long
                                                              })
@@ -729,20 +784,29 @@ nicolas_2016_without_outliers_PCA_as_df$ID_country <- sapply(rownames(nicolas_20
 #Subset
 
 ```{r, echo=TRUE}
-nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR <- subset(nicolas_2016_without_outliers_PCA_as_df, ID_country %in% typochronologie_csv_FR$ID_country)
+SFP_2023_without_outliers_PCA_as_df_subset_typochron_DM <- subset(SFP_2023_without_outliers_PCA_as_df, ID_country %in% typochronologie_TAB_DM$ID_site)
 ```
 
 #Make a dataframe
 
 ```{r, echo=TRUE}
-names_artefacts_ID <- data.frame(artefact_ID = rownames(nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR),
-                                 ID_country = nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR$ID_country)
+names_artefacts_ID <- data.frame(artefact_ID = rownames(SFP_2023_without_outliers_PCA_as_df_subset_typochron_DM),
+                                 ID_site = SFP_2023_without_outliers_PCA_as_df_subset_typochron_DM$ID_country) #renamed 'ID_country' to 'ID_site'
+
+#Original code:
+#names_artefacts_ID <- data.frame(artefact_ID = rownames(nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR),
+#                                 ID_country = nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR$ID_country)
 ```
 
 #dplyr
 
+Soren: I think my problem below is because the columns I want to join is not named in the same way -> i.e. 'ID_country'
+
 ```{r, echo=TRUE}
-names_artefacts_ID_and_period <- dplyr::left_join(names_artefacts_ID, typochronologie_csv_FR[,c("ID_country", "Period")], by = "ID_country")
+names_artefacts_ID_and_period <- dplyr::left_join(names_artefacts_ID, typochronologie_TAB_DM[,c("ID_site", "Period")], by = "ID_site")
+
+#Original code:
+#names_artefacts_ID_and_period <- dplyr::left_join(names_artefacts_ID, typochronologie_csv_FR[,c("ID_country", "Period")], by = "ID_country")
 ```
 
 #as.factor
@@ -754,14 +818,14 @@ names_artefacts_ID_and_period$Period <- as.factor(names_artefacts_ID_and_period$
 #Plot
 
 ```{r, echo=TRUE}
-plot(nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR$PC1,
-     nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR$PC2,
+plot(SFP_2023_without_outliers_PCA_as_df_subset_typochron_DM$PC1,
+     SFP_2023_without_outliers_PCA_as_df_subset_typochron_DM$PC2,
      xlab="PC1", 
      ylab="PC2",
      cex=1,
      las=1,
      asp=1,
-     main = "Nicolas 2016; PCA of French Bell Beaker arrowhead outline shapes without outliers")
+     main = "SFP 2023; PCA of Dia Mara vessel outline shapes without outliers")
 
 # Add grid lines
 abline(v=0, lty=2, col="grey50")
@@ -771,19 +835,19 @@ abline(h=0, lty=2, col="grey50")
 #NULL
 
 ```{r, echo=TRUE}
-nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR$ID_country <- NULL
+SFP_2023_without_outliers_PCA_as_df_subset_typochron_DM$ID_site <- NULL
 ```
 
 #dist (euclidean)
 
 ```{r, echo=TRUE}
-nicolas_typochron_FR_dist <- dist(nicolas_2016_without_outliers_PCA_as_df_subset_typochron_FR, method = "euclidean")
+SFP_typochron_DM_dist <- dist(SFP_2023_without_outliers_PCA_as_df_subset_typochron_DM, method = "euclidean")
 ```
 
 #phangorn
 
 ```{r, echo=TRUE}
-nicolas_typochron_FR_NJ <- phangorn::NJ(nicolas_typochron_FR_dist)
+SFP_typochron_DM_NJ <- phangorn::NJ(SFP_typochron_DM_dist)
 ```
 
 #Make additional information data frame "period"
@@ -806,10 +870,10 @@ rownames(additional_information_period) <- names_artefacts_ID_and_period$artefac
 #Plot
 
 ```{r, echo=TRUE}
-NJ_nicolas_ggtree <- ggtree(nicolas_typochron_FR_NJ) %<+% names_artefacts_ID_and_period +
+NJ_SFP_ggtree <- ggtree(SFP_typochron_DM_NJ) %<+% names_artefacts_ID_and_period +
   geom_tiplab(size=3, 
-              aes(label = ID_country,
-                  color = ID_country)) +
+              aes(label = ID_site,
+                  color = ID_site)) +
   geom_treescale() + 
   scale_colour_discrete(na.translate = F) + 
   guides(color=guide_legend(title="Site ID"))
@@ -818,6 +882,6 @@ NJ_nicolas_ggtree <- ggtree(nicolas_typochron_FR_NJ) %<+% names_artefacts_ID_and
 #View tree
 
 ```{r, echo=TRUE}
-NJ_nicolas_ggtree
+NJ_SFP_ggtree
 ```
 
