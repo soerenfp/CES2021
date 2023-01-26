@@ -1,0 +1,241 @@
+ID_by_SFP;ID_site;Dating;Site;Period;Area
+1;DM-01;500-1000AD;Dia Mara;5;IND
+2;DM-02;500-1000AD;Dia Mara;5;IND
+3;DM-03;1000-1600AD;Dia Mara;6;IND
+4;DM-04;1000-1600AD;Dia Mara;6;IND
+5;DM-05;1000-1600AD;Dia Mara;6;IND
+6;DM-06;1000-1600AD;Dia Mara;6;IND
+7;DM-07;1000-1600AD;Dia Mara;6;IND
+1;DS-01;800-200BC;Dia Shoma;4;IND
+2;DS-02;800-200BC;Dia Shoma;4;IND
+3;DS-03;800-200BC;Dia Shoma;4;IND
+4;DS-04;800-200BC;Dia Shoma;4;IND
+5;DS-05;800-200BC;Dia Shoma;4;IND
+6;DS-06;800-200BC;Dia Shoma;4;IND
+7;DS-07;800-200BC;Dia Shoma;4;IND
+8;DS-08;800-200BC;Dia Shoma;4;IND
+9;DS-09;800-200BC;Dia Shoma;4;IND
+10;DS-10;800-200BC;Dia Shoma;4;IND
+11;DS-11;1000-1600AD;Dia Shoma;6;IND
+12;DS-12;1000-1600AD;Dia Shoma;6;IND
+13;DS-13;1000-1600AD;Dia Shoma;6;IND
+14;DS-14;1000-1600AD;Dia Shoma;6;IND
+1;JJ-01;250BC-350AD;Jenne-jeno;4;IND
+2;JJ-02;250BC-350AD;Jenne-jeno;4;IND
+3;JJ-03;250BC-350AD;Jenne-jeno;4;IND
+4;JJ-04;250BC-350AD;Jenne-jeno;4;IND
+5;JJ-05;250BC-350AD;Jenne-jeno;4;IND
+6;JJ-06;250BC-350AD;Jenne-jeno;4;IND
+7;JJ-07;250BC-350AD;Jenne-jeno;4;IND
+8;JJ-08;250BC-350AD;Jenne-jeno;4;IND
+9;JJ-09;250BC-350AD;Jenne-jeno;4;IND
+10;JJ-10;250BC-350AD;Jenne-jeno;4;IND
+11;JJ-11;250BC-350AD;Jenne-jeno;4;IND
+12;JJ-12;250BC-350AD;Jenne-jeno;4;IND
+13;JJ-13;350-850AD;Jenne-jeno;5;IND
+14;JJ-14;350-850AD;Jenne-jeno;5;IND
+15;JJ-15;350-850AD;Jenne-jeno;5;IND
+16;JJ-16;350-850AD;Jenne-jeno;5;IND
+17;JJ-17;350-850AD;Jenne-jeno;5;IND
+18;JJ-18;350-850AD;Jenne-jeno;5;IND
+19;JJ-19;350-850AD;Jenne-jeno;5;IND
+20;JJ-20;350-850AD;Jenne-jeno;5;IND
+21;JJ-21;350-850AD;Jenne-jeno;5;IND
+22;JJ-22;350-850AD;Jenne-jeno;5;IND
+23;JJ-23;350-850AD;Jenne-jeno;5;IND
+24;JJ-24;350-850AD;Jenne-jeno;5;IND
+25;JJ-25;350-850AD;Jenne-jeno;5;IND
+26;JJ-26;350-850AD;Jenne-jeno;5;IND
+27;JJ-27;350-850AD;Jenne-jeno;5;IND
+28;JJ-28;350-850AD;Jenne-jeno;5;IND
+29;JJ-29;350-850AD;Jenne-jeno;5;IND
+30;JJ-30;350-850AD;Jenne-jeno;5;IND
+31;JJ-31;850-1400AD;Jenne-jeno;6;IND
+32;JJ-32;850-1400AD;Jenne-jeno;6;IND
+33;JJ-33;850-1400AD;Jenne-jeno;6;IND
+34;JJ-34;850-1400AD;Jenne-jeno;6;IND
+35;JJ-35;850-1400AD;Jenne-jeno;6;IND
+36;JJ-36;850-1400AD;Jenne-jeno;6;IND
+37;JJ-37;850-1400AD;Jenne-jeno;6;IND
+38;JJ-38;850-1400AD;Jenne-jeno;6;IND
+39;JJ-39;850-1400AD;Jenne-jeno;6;IND
+40;JJ-40;850-1400AD;Jenne-jeno;6;IND
+41;JJ-41;850-1400AD;Jenne-jeno;6;IND
+42;JJ-42;850-1400AD;Jenne-jeno;6;IND
+43;JJ-43;850-1400AD;Jenne-jeno;6;IND
+44;JJ-44;850-1400AD;Jenne-jeno;6;IND
+45;JJ-45;850-1400AD;Jenne-jeno;6;IND
+46;JJ-46;850-1400AD;Jenne-jeno;6;IND
+47;JJ-47;850-1400AD;Jenne-jeno;6;IND
+48;JJ-48;850-1400AD;Jenne-jeno;6;IND
+49;JJ-49;850-1400AD;Jenne-jeno;6;IND
+50;JJ-50;850-1400AD;Jenne-jeno;6;IND
+51;JJ-51;850-1400AD;Jenne-jeno;6;IND
+52;JJ-52;850-1400AD;Jenne-jeno;6;IND
+53;JJ-53;850-1400AD;Jenne-jeno;6;IND
+54;JJ-54;850-1400AD;Jenne-jeno;6;IND
+55;JJ-55;850-1400AD;Jenne-jeno;6;IND
+56;JJ-56;350-850AD;Jenne-jeno;5;IND
+57;JJ-57;850-1400AD;Jenne-jeno;6;IND
+58;JJ-58;350-850AD;Jenne-jeno;5;IND
+59;JJ-59;350-850AD;Jenne-jeno;5;IND
+60;JJ-60;350-850AD;Jenne-jeno;5;IND
+61;JJ-61;350-850AD;Jenne-jeno;5;IND
+62;JJ-62;350-850AD;Jenne-jeno;5;IND
+63;JJ-63;850-1400AD;Jenne-jeno;6;IND
+64;JJ-64;850-1400AD;Jenne-jeno;6;IND
+65;JJ-65;850-1400AD;Jenne-jeno;6;IND
+66;JJ-66;850-1400AD;Jenne-jeno;6;IND
+1;KN-01;300-440AD;KNTII;4;Lakes
+2;KN-02;300-440AD;KNTII;4;Lakes
+3;KN-03;300-440AD;KNTII;4;Lakes
+4;KN-04;300-440AD;KNTII;4;Lakes
+5;KN-05;300-440AD;KNTII;4;Lakes
+6;KN-06;300-440AD;KNTII;4;Lakes
+7;KN-07;300-440AD;KNTII;4;Lakes
+8;KN-08;300-440AD;KNTII;4;Lakes
+9;KN-09;300-440AD;KNTII;4;Lakes
+10;KN-10;300-440AD;KNTII;4;Lakes
+11;KN-11;300-440AD;KNTII;4;Lakes
+12;KN-12;300-440AD;KNTII;4;Lakes
+13;KN-13;440-640AD;KNTII;5;Lakes
+14;KN-14;540-605AD;KNTII;5;Lakes
+15;KN-15;300-440AD;KNTII;4;Lakes
+16;KN-16;440-640AD;KNTII;5;Lakes
+17;KN-17;605-680AD;KNTII;5;Lakes
+18;KN-18;300-440AD;KNTII;4;Lakes
+19;KN-19;605-680AD;KNTII;5;Lakes
+20;KN-20;300-440AD;KNTII;4;Lakes
+21;KN-21;300-440AD;KNTII;4;Lakes
+22;KN-22;300-440AD;KNTII;4;Lakes
+23;KN-23;605-680AD;KNTII;5;Lakes
+24;KN-24;605-680AD;KNTII;5;Lakes
+25;KN-25;605-680AD;KNTII;5;Lakes
+26;KN-26;540-605AD;KNTII;5;Lakes
+27;KN-27;300-440AD;KNTII;4;Lakes
+28;KN-28;300-440AD;KNTII;4;Lakes
+29;KN-29;440-605AD;KNTII;5;Lakes
+30;KN-30;440-605AD;KNTII;5;Lakes
+31;KN-31;300-440AD;KNTII;4;Lakes
+32;KN-32;605-680AD;KNTII;5;Lakes
+33;KN-33;440-640AD;KNTII;5;Lakes
+34;KN-34;605-680AD;KNTII;5;Lakes
+35;KN-35;300-440AD;KNTII;4;Lakes
+36;KN-36;300-440AD;KNTII;4;Lakes
+37;KN-37;300-440AD;KNTII;4;Lakes
+38;KN-38;300-440AD;KNTII;4;Lakes
+39;KN-39;300-440AD;KNTII;4;Lakes
+40;KN-40;300-440AD;KNTII;4;Lakes
+41;KN-41;300-440AD;KNTII;4;Lakes
+42;KN-42;300-440AD;KNTII;4;Lakes
+43;KN-43;300-440AD;KNTII;4;Lakes
+44;KN-44;300-440AD;KNTII;4;Lakes
+45;KN-45;300-440AD;KNTII;4;Lakes
+46;KN-46;605-680AD;KNTII;5;Lakes
+47;KN-47;440-640AD;KNTII;5;Lakes
+1;KO-01;4230-3820BC;Korounkorokale;2;South
+2;KO-02;4230-3820BC;Korounkorokale;2;South
+3;KO-03;890-1160AD;Korounkorokale;5;South
+4;KO-04;890-1160AD;Korounkorokale;5;South
+1;OU-01;pre-9400BC;Ounjougou;1;Bend
+2;OU-02;2700-2020BC;Ounjougou;2;Bend
+3;OU-03;2700-2020BC;Ounjougou;2;Bend
+4;OU-04;1800-800BC;Ounjougou;3;Bend
+5;OU-05;1800-800BC;Ounjougou;3;Bend
+6;OU-06;1800-800BC;Ounjougou;3;Bend
+7;OU-07;1800-800BC;Ounjougou;3;Bend
+8;OU-08;1800-800BC;Ounjougou;3;Bend
+1;TI-01;500-100BC;Timbuktu;5;Lakes
+2;TI-02;500-100BC;Timbuktu;5;Lakes
+3;TI-03;650-770AD;Timbuktu;5;Lakes
+4;TI-04;650-770AD;Timbuktu;5;Lakes
+5;TI-05;650-770AD;Timbuktu;5;Lakes
+6;TI-06;650-770AD;Timbuktu;5;Lakes
+7;TI-07;650-770AD;Timbuktu;5;Lakes
+8;TI-08;650-770AD;Timbuktu;5;Lakes
+9;TI-09;650-770AD;Timbuktu;5;Lakes
+10;TI-10;770-1000AD;Timbuktu;5;Lakes
+11;TI-11;770-1000AD;Timbuktu;5;Lakes
+12;TI-12;770-1000AD;Timbuktu;5;Lakes
+13;TI-13;770-1000AD;Timbuktu;5;Lakes
+14;TI-14;770-1000AD;Timbuktu;5;Lakes
+15;TI-15;770-1000AD;Timbuktu;5;Lakes
+16;TI-16;770-1000AD;Timbuktu;5;Lakes
+17;TI-17;770-1000AD;Timbuktu;5;Lakes
+18;TI-18;770-1000AD;Timbuktu;5;Lakes
+19;TI-19;770-1000AD;Timbuktu;5;Lakes
+20;TI-20;770-1000AD;Timbuktu;5;Lakes
+21;TI-21;770-1000AD;Timbuktu;5;Lakes
+22;TI-22;770-1000AD;Timbuktu;5;Lakes
+23;TI-23;770-1000AD;Timbuktu;5;Lakes
+24;TI-24;770-1000AD;Timbuktu;5;Lakes
+25;TI-25;770-1000AD;Timbuktu;5;Lakes
+26;TI-26;770-1000AD;Timbuktu;5;Lakes
+27;TI-27;770-1000AD;Timbuktu;5;Lakes
+28;TI-28;770-1000AD;Timbuktu;5;Lakes
+29;TI-29;770-1000AD;Timbuktu;5;Lakes
+1;TB-01;1295-1430AD;Toubel;6;Lakes
+2;TB-02;1295-1430AD;Toubel;6;Lakes
+3;TB-03;1295-1430AD;Toubel;6;Lakes
+4;TB-04;1295-1430AD;Toubel;6;Lakes
+5;TB-05;1295-1430AD;Toubel;6;Lakes
+6;TB-06;1295-1430AD;Toubel;6;Lakes
+7;TB-07;1295-1430AD;Toubel;6;Lakes
+8;TB-08;1295-1430AD;Toubel;6;Lakes
+9;TB-09;1295-1430AD;Toubel;6;Lakes
+10;TB-10;1295-1430AD;Toubel;6;Lakes
+11;TB-11;1295-1430AD;Toubel;6;Lakes
+12;TB-12;1295-1430AD;Toubel;6;Lakes
+13;TB-13;1295-1430AD;Toubel;6;Lakes
+1;WK-01;NA;Winde Koroji;3;Bend
+2;WK-02;NA;Winde Koroji;3;Bend
+3;WK-03;NA;Winde Koroji;3;Bend
+4;WK-04;NA;Winde Koroji;3;Bend
+5;WK-05;NA;Winde Koroji;3;Bend
+6;WK-06;NA;Winde Koroji;3;Bend
+7;WK-07;NA;Winde Koroji;3;Bend
+8;WK-08;NA;Winde Koroji;3;Bend
+9;WK-09;NA;Winde Koroji;3;Bend
+10;WK-10;NA;Winde Koroji;3;Bend
+11;WK-11;NA;Winde Koroji;3;Bend
+12;WK-12;NA;Winde Koroji;3;Bend
+13;WK-13;NA;Winde Koroji;3;Bend
+14;WK-14;NA;Winde Koroji;3;Bend
+15;WK-15;NA;Winde Koroji;3;Bend
+16;WK-16;NA;Winde Koroji;3;Bend
+17;WK-17;NA;Winde Koroji;3;Bend
+1;DT-01;NA;Dhar Tichitt;3;Sahara
+2;DT-02;NA;Dhar Tichitt;3;Sahara
+3;DT-03;NA;Dhar Tichitt;3;Sahara
+4;DT-04;NA;Dhar Tichitt;3;Sahara
+5;DT-05;NA;Dhar Tichitt;3;Sahara
+6;DT-06;NA;Dhar Tichitt;3;Sahara
+7;DT-07;NA;Dhar Tichitt;3;Sahara
+8;DT-08;NA;Dhar Tichitt;3;Sahara
+9;DT-09;NA;Dhar Tichitt;3;Sahara
+10;DT-10;NA;Dhar Tichitt;3;Sahara
+11;DT-11;NA;Dhar Tichitt;3;Sahara
+12;DT-12;NA;Dhar Tichitt;3;Sahara
+13;DT-13;NA;Dhar Tichitt;3;Sahara
+14;DT-14;NA;Dhar Tichitt;3;Sahara
+15;DT-15;NA;Dhar Tichitt;3;Sahara
+16;DT-16;NA;Dhar Tichitt;3;Sahara
+17;DT-17;NA;Dhar Tichitt;3;Sahara
+18;DT-18;NA;Dhar Tichitt;3;Sahara
+1;KK-01;2010-1670BC;Karkarichinkat;3;Sahara
+2;KK-02;2010-1670BC;Karkarichinkat;3;Sahara
+3;KK-03;2010-1670BC;Karkarichinkat;3;Sahara
+4;KK-04;2010-1670BC;Karkarichinkat;3;Sahara
+5;KK-05;2010-1670BC;Karkarichinkat;3;Sahara
+6;KK-06;2010-1670BC;Karkarichinkat;3;Sahara
+7;KK-07;2010-1670BC;Karkarichinkat;3;Sahara
+8;KK-08;2010-1670BC;Karkarichinkat;3;Sahara
+9;KK-09;2010-1670BC;Karkarichinkat;3;Sahara
+10;KK-10;2010-1670BC;Karkarichinkat;3;Sahara
+11;KK-11;2010-1670BC;Karkarichinkat;3;Sahara
+12;KK-12;2010-1670BC;Karkarichinkat;3;Sahara
+13;KK-13;2010-1670BC;Karkarichinkat;3;Sahara
+14;KK-14;2010-1670BC;Karkarichinkat;3;Sahara
+15;KK-15;2010-1670BC;Karkarichinkat;3;Sahara
+16;KK-16;2010-1670BC;Karkarichinkat;3;Sahara
+17;KK-17;2010-1670BC;Karkarichinkat;3;Sahara
